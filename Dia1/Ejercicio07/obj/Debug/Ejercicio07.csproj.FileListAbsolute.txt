@@ -1,0 +1,5 @@
+c:\users\alumno\documents\visual studio 2012\Projects\Ejercicio1\Ejercicio07\bin\Debug\Ejercicio07.exe.config
+c:\users\alumno\documents\visual studio 2012\Projects\Ejercicio1\Ejercicio07\bin\Debug\Ejercicio07.exe
+c:\users\alumno\documents\visual studio 2012\Projects\Ejercicio1\Ejercicio07\bin\Debug\Ejercicio07.pdb
+c:\users\alumno\documents\visual studio 2012\Projects\Ejercicio1\Ejercicio07\obj\Debug\Ejercicio07.exe
+c:\users\alumno\documents\visual studio 2012\Projects\Ejercicio1\Ejercicio07\obj\Debug\Ejercicio07.pdb

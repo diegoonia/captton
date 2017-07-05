@@ -1,0 +1,4 @@
+C:\Users\Alumno\Documents\Visual Studio 2012\Projects\Ejercicio1\Ejercicio1\bin\Debug\Ejercicio1.exe.config
+C:\Users\Alumno\Documents\Visual Studio 2012\Projects\Ejercicio1\Ejercicio1\obj\Debug\Ejercicio1.exe
+C:\Users\Alumno\Documents\Visual Studio 2012\Projects\Ejercicio1\Ejercicio1\obj\Debug\Ejercicio1.pdb
+C:\Users\Alumno\Documents\Visual Studio 2012\Projects\Ejercicio1\Ejercicio1\obj\Debug\Clase01.csprojResolveAssemblyReference.cache

@@ -1,0 +1,5 @@
+c:\users\alumno\documents\visual studio 2012\Projects\Clase2\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\alumno\documents\visual studio 2012\Projects\Clase2\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\alumno\documents\visual studio 2012\Projects\Clase2\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\alumno\documents\visual studio 2012\Projects\Clase2\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\alumno\documents\visual studio 2012\Projects\Clase2\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

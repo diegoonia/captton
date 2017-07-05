@@ -1,0 +1,9 @@
+C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\bin\Debug\EjercicioCafetera.exe.config
+C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\bin\Debug\EjercicioCafetera.exe
+C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\bin\Debug\EjercicioCafetera.pdb
+C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\obj\Debug\EjercicioCafetera.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\obj\Debug\EjercicioCafetera.exe
+C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\obj\Debug\EjercicioCafetera.pdb
+C:\Users\Alumno\Desktop\captton\Dia2\EjercicioCafetera\bin\Debug\EjercicioCafetera.exe.config
+C:\Users\Alumno\Desktop\captton\Dia2\EjercicioCafetera\obj\Debug\EjercicioCafetera.exe
+C:\Users\Alumno\Desktop\captton\Dia2\EjercicioCafetera\obj\Debug\EjercicioCafetera.pdb
