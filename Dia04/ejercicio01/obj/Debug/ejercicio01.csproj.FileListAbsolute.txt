@@ -1,0 +1,6 @@
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio01\bin\Debug\ejercicio01.exe.config
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio01\obj\Debug\ejercicio01.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio01\bin\Debug\ejercicio01.exe
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio01\bin\Debug\ejercicio01.pdb
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio01\obj\Debug\ejercicio01.exe
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio01\obj\Debug\ejercicio01.pdb

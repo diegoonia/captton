@@ -30,7 +30,7 @@ namespace ejercicio02
                 str.AppendLine( item.getCliente().GetNombre() + ": mi cuenta es " + item.getTarjeta().GetCuenta() );
             }
 
-            Console.WriteLine(str.ToString());
+            Console.WriteLine(str.ToString()); 
 
 
             Console.ReadKey();

@@ -12,12 +12,22 @@ namespace ejercicio01
         {
 
             Universidad universidad = new Universidad("UnLaM");
-            Curso arqDeComp = new Curso("arquitectura de computadoras", 250, "Sklanny");
+            Profesor prof = new Profesor("Sklanny");
+            Profesor prof2 = new Profesor("De Paoli");
+            Profesor prof3 = new Profesor("Jair");
+          
+            Curso arqDeComp = new Curso("Arquitectura de computadoras", 250, prof);
+            Curso tics = new Curso("TICS", 250, prof2);
+            
             Alumno alum1 = new Alumno("Diego Oña", universidad);
             Alumno alum2 = new Alumno("Rodri Mansilla", universidad);
             Alumno alum3 = new Alumno("Gonza Rodeiro", universidad);
 
-            Curso tics = new Curso("Tics", 208, "De Paoli");
+            arqDeComp.AñadirProfesor(prof3);
+
+            prof3.AñadirCurso(arqDeComp);
+            prof.AñadirCurso(arqDeComp);
+            prof2.AñadirCurso(tics);
 
             universidad.AñadirCurso(arqDeComp);
             universidad.AñadirCurso(tics);

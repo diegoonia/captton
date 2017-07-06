@@ -9,11 +9,17 @@ namespace ejercicio01
     class Profesor
     {
         private string nombre;
+        private List<Curso> listaDeCursos = new List<Curso>();
 
         public Profesor(string nombre)
         {
             this.nombre = nombre;
            
+        }
+
+        public void AñadirCurso(Curso curso)
+        {
+            listaDeCursos.Add(curso);
         }
 
         public string GetNombre()

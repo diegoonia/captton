@@ -1,0 +1,6 @@
+C:\Users\Alumno\Desktop\captton\Dia04\Demo\bin\Debug\Demo.exe.config
+C:\Users\Alumno\Desktop\captton\Dia04\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\Desktop\captton\Dia04\Demo\bin\Debug\Demo.exe
+C:\Users\Alumno\Desktop\captton\Dia04\Demo\bin\Debug\Demo.pdb
+C:\Users\Alumno\Desktop\captton\Dia04\Demo\obj\Debug\Demo.exe
+C:\Users\Alumno\Desktop\captton\Dia04\Demo\obj\Debug\Demo.pdb

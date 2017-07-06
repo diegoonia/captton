@@ -1,0 +1,5 @@
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio02\bin\Debug\ejercicio02.exe.config
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio02\bin\Debug\ejercicio02.exe
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio02\bin\Debug\ejercicio02.pdb
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio02\obj\Debug\ejercicio02.exe
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicio02\obj\Debug\ejercicio02.pdb

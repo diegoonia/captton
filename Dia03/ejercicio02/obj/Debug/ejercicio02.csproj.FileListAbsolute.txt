@@ -4,3 +4,9 @@ c:\users\alumno\documents\visual studio 2012\Projects\Dia03\ejercicio02\bin\Debu
 c:\users\alumno\documents\visual studio 2012\Projects\Dia03\ejercicio02\obj\Debug\ejercicio02.exe
 c:\users\alumno\documents\visual studio 2012\Projects\Dia03\ejercicio02\obj\Debug\ejercicio02.pdb
 c:\users\alumno\documents\visual studio 2012\Projects\Dia03\ejercicio02\obj\Debug\ejercicio02.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\Desktop\captton\Dia03\ejercicio02\bin\Debug\ejercicio02.exe.config
+C:\Users\Alumno\Desktop\captton\Dia03\ejercicio02\obj\Debug\ejercicio02.exe
+C:\Users\Alumno\Desktop\captton\Dia03\ejercicio02\obj\Debug\ejercicio02.pdb
+C:\Users\Alumno\Desktop\captton\Dia03\ejercicio02\bin\Debug\ejercicio02.exe
+C:\Users\Alumno\Desktop\captton\Dia03\ejercicio02\bin\Debug\ejercicio02.pdb
+C:\Users\Alumno\Desktop\captton\Dia03\ejercicio02\obj\Debug\ejercicio02.csprojResolveAssemblyReference.cache

@@ -10,14 +10,19 @@ namespace ejercicio01
     {
         private string nombre;
         private int aula;
-        private Profesor profesorTitular;
+        private List<Profesor> listaDeProfesores = new List<Profesor>();
         private List<Alumno> listaDeAlumnos = new List<Alumno>();
 
-        public Curso(string nombre, int aula, string nombreProfesor)
+        public Curso(string nombre, int aula, Profesor profesor)
         {
-            this.profesorTitular = new Profesor(nombreProfesor);
+            this.listaDeProfesores.Add(profesor);
             this.nombre = nombre;
             this.aula = aula;
+        }
+
+        public void AñadirProfesor(Profesor profesor)
+        {
+            listaDeProfesores.Add(profesor);
         }
 
         public void AñadirAlumno(Alumno alumno)
@@ -30,7 +35,11 @@ namespace ejercicio01
             StringBuilder str = new StringBuilder();
 
             str.AppendLine("En el curso: " + this.nombre);
-            str.AppendLine(profesorTitular.GetNombre() + ": Soy el profesor titular");
+            
+            foreach (Profesor item in listaDeProfesores)
+            {
+                str.AppendLine(item.GetNombre() + " : Soy el profesor titular");
+            }
 
             foreach (Alumno item in listaDeAlumnos)
             {

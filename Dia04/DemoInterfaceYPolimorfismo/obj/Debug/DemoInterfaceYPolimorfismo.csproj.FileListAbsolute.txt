@@ -1,0 +1,6 @@
+C:\Users\Alumno\Desktop\captton\Dia04\DemoInterfaceYPolimorfismo\bin\Debug\DemoInterfaceYPolimorfismo.exe.config
+C:\Users\Alumno\Desktop\captton\Dia04\DemoInterfaceYPolimorfismo\bin\Debug\DemoInterfaceYPolimorfismo.exe
+C:\Users\Alumno\Desktop\captton\Dia04\DemoInterfaceYPolimorfismo\bin\Debug\DemoInterfaceYPolimorfismo.pdb
+C:\Users\Alumno\Desktop\captton\Dia04\DemoInterfaceYPolimorfismo\obj\Debug\DemoInterfaceYPolimorfismo.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\Desktop\captton\Dia04\DemoInterfaceYPolimorfismo\obj\Debug\DemoInterfaceYPolimorfismo.exe
+C:\Users\Alumno\Desktop\captton\Dia04\DemoInterfaceYPolimorfismo\obj\Debug\DemoInterfaceYPolimorfismo.pdb

@@ -1,0 +1,6 @@
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicioOpcional\bin\Debug\ejercicioOpcional.exe.config
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicioOpcional\bin\Debug\ejercicioOpcional.exe
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicioOpcional\bin\Debug\ejercicioOpcional.pdb
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicioOpcional\obj\Debug\ejercicioOpcional.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicioOpcional\obj\Debug\ejercicioOpcional.exe
+C:\Users\Alumno\Desktop\captton\Dia04\ejercicioOpcional\obj\Debug\ejercicioOpcional.pdb
