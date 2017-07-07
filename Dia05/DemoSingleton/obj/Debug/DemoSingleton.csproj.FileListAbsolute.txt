@@ -1,0 +1,6 @@
+C:\Users\Alumno\Desktop\captton\Dia05\DemoSingleton\bin\Debug\DemoSingleton.exe.config
+C:\Users\Alumno\Desktop\captton\Dia05\DemoSingleton\bin\Debug\DemoSingleton.exe
+C:\Users\Alumno\Desktop\captton\Dia05\DemoSingleton\bin\Debug\DemoSingleton.pdb
+C:\Users\Alumno\Desktop\captton\Dia05\DemoSingleton\obj\Debug\DemoSingleton.csprojResolveAssemblyReference.cache
+C:\Users\Alumno\Desktop\captton\Dia05\DemoSingleton\obj\Debug\DemoSingleton.exe
+C:\Users\Alumno\Desktop\captton\Dia05\DemoSingleton\obj\Debug\DemoSingleton.pdb

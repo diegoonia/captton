@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoDia05", "DemoDia05\DemoDia05.csproj", "{ECC20FAE-CFAA-4FB7-B1FE-1E19AAD7E9BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSingleton", "DemoSingleton\DemoSingleton.csproj", "{E066DB21-34AB-4CAA-B317-F1B5A9969224}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECC20FAE-CFAA-4FB7-B1FE-1E19AAD7E9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC20FAE-CFAA-4FB7-B1FE-1E19AAD7E9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC20FAE-CFAA-4FB7-B1FE-1E19AAD7E9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC20FAE-CFAA-4FB7-B1FE-1E19AAD7E9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E066DB21-34AB-4CAA-B317-F1B5A9969224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E066DB21-34AB-4CAA-B317-F1B5A9969224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E066DB21-34AB-4CAA-B317-F1B5A9969224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E066DB21-34AB-4CAA-B317-F1B5A9969224}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

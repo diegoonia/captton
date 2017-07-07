@@ -1,0 +1,36 @@
+﻿@{
+    Page.Title = "Personas";
+    Layout = "Layout.cshtml";
+    
+    Persona per1 = new Persona("Mati");
+    Persona per2 = new Persona("Mario");
+    Persona per3 = new Persona("Luigi");
+    Persona per4 = new Persona("Peach");
+
+    per2.Nombre = "Bowser";
+    
+    List<Persona> listita = new List<Persona>();
+    listita.Add(per1);
+    listita.Add(per2);
+    listita.Add(per3);
+    listita.Add(per4);
+} <!-- esto es para meter el codigo C#, esto es razor -->
+
+
+<div>
+    <table class="DiegoClass">
+        <tr> <!-- fila -->
+            <th>Indice</th>
+            <th>Nombre</th> <!-- columna -->
+        </tr>
+        @foreach (Persona item in listita)
+        {
+            <tr>
+                <td id="DiegoDiv">@listita.IndexOf(item)</td>
+                <!-- UTILIZANDO LA PROPIEDAD COMO UN GET -->
+                @*<td>@item.Nombre</td>*@
+            </tr>
+
+        }
+    </table>
+</div>

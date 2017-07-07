@@ -7,3 +7,6 @@ C:\Users\Alumno\documents\visual studio 2012\Projects\Clase2\EjercicioCafetera\o
 C:\Users\Alumno\Desktop\captton\Dia2\EjercicioCafetera\bin\Debug\EjercicioCafetera.exe.config
 C:\Users\Alumno\Desktop\captton\Dia2\EjercicioCafetera\obj\Debug\EjercicioCafetera.exe
 C:\Users\Alumno\Desktop\captton\Dia2\EjercicioCafetera\obj\Debug\EjercicioCafetera.pdb
+C:\Users\Alumno\Desktop\captton\Dia02\EjercicioCafetera\bin\Debug\EjercicioCafetera.exe.config
+C:\Users\Alumno\Desktop\captton\Dia02\EjercicioCafetera\obj\Debug\EjercicioCafetera.exe
+C:\Users\Alumno\Desktop\captton\Dia02\EjercicioCafetera\obj\Debug\EjercicioCafetera.pdb

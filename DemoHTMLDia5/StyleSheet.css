@@ -1,0 +1,13 @@
+﻿body { background-color: aquamarine;
+       font-family:'Comic Sans MS';
+}
+
+#DiegoDiv{
+    background-color: #241571;
+    font-family:'Times New Roman';
+    color: white;
+}
+
+.DiegoClass{
+    background-color: whitesmoke;
+}
