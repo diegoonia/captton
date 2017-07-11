@@ -1,0 +1,28 @@
+﻿@{
+    Page.Title = "Entrada";
+    Layout = "Layout.cshtml";
+    
+    
+}
+
+
+<div>
+    <form action="ListaAutos.cshtml" method="post">
+
+        <label>Patente</label>
+        <input type="text" name="patente" value="" />
+        <br />
+
+        <label>Día</label>
+        <label>@DateTime.Now.Day/@DateTime.Now.Month</label>
+        <br />
+        <label>Horario</label>
+        <label>@DateTime.Now.Hour:@DateTime.Now.Minute</label>
+    
+    <br />
+    <br />
+    <input  class="btn btn-primary" type="submit" name="btn" value="Ingresar Vehículo" />
+
+    </form>
+    
+</div>

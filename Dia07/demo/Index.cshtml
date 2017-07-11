@@ -1,0 +1,60 @@
+﻿@{
+    Page.Title = "Title goes here";
+
+    List<Empleado> listaEmpleados = new List<Empleado>();
+
+    if (Session["listaDeEmpleados"] == null)
+    {
+        Session["listaDeEmpleados"] = listaEmpleados;
+    }
+
+    if (IsPost)
+    { //Es lo mismo que decir Request["btn"]=="Enviar"
+
+        listaEmpleados = (List<Empleado>)Session["listaDeEmpleados"];
+
+        string name = Request["nombre"];
+        string lastname = Request["apellido"];
+        int dni = int.Parse(Request["dni"]);
+
+        List<string> listaDeAreas = (List<string>)Session["listaDeArea"];
+
+        int indexArea = int.Parse(Request["area"]);
+        string area = listaDeAreas[indexArea];
+
+        Empleado emp = new Empleado(name, lastname, area, dni);
+        listaEmpleados.Add(emp);
+
+        Session["listaDeEmpleados"] = listaEmpleados;
+        Response.Redirect("Index");
+    }
+    else
+    {
+        listaEmpleados = (List<Empleado>)Session["listaDeEmpleados"];
+    }
+}
+
+
+
+<div>
+    @if (listaEmpleados.Count > 0)
+    {
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dni</th>
+                <th>Area</th>
+            </tr>
+            @foreach (Empleado item in listaEmpleados)
+            {
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.apellido</td>
+                    <td>@item.dni</td>
+                    <td>@item.area</td>
+                </tr>
+            }
+        </table>
+    }
+</div>

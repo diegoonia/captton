@@ -1,0 +1,63 @@
+﻿@{
+    Page.Title = "Lista de autos";
+    Layout = "Layout.cshtml";
+
+    List<Auto> listaAutos = new List<Auto>();
+    
+    if (Session["listaDeAutos"] == null)
+    {
+        Session["listaDeAutos"] = listaAutos;
+    }
+
+    if (IsPost)
+    { //Es lo mismo que decir Request["btn"]=="Enviar"
+
+        listaAutos = (List<Auto>)Session["listaDeAutos"];
+
+        string patente = Request["patente"];
+
+        Auto auto = new Auto(patente);
+        
+        if (listaAutos.Count < 30)
+        {
+            listaAutos.Add(auto);
+        }
+
+        Session["listaDeAutos"] = listaAutos;
+        Response.Redirect("ListaAutos.cshtml");
+    }
+    else
+    {
+        listaAutos = (List<Auto>)Session["listaDeAutos"];
+    }
+}
+
+
+<div>
+    @if(listaAutos.Count > 0)
+    {
+        if(listaAutos.Count >= 30)
+        {
+            <h1>Estacionamiento Lleno</h1>
+        }
+        
+        <table class="table table-hover">
+            <tr>
+                <th class="text-center">Patente de Auto</th>
+                <th class="text-center">Hora de entrada</th>
+            </tr>
+            @foreach (Auto item in listaAutos)
+            {
+                <tr>
+                    <td class="text-center">@item.patente</td>
+                    <td class="text-center">@item.horaEntrada.Hour:@item.horaEntrada.Minute</td>
+                </tr>
+            }
+        </table>
+        
+    }
+    else
+    {
+        <h1>No hay ningún auto estacionado</h1>
+    }
+</div>

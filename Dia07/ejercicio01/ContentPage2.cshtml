@@ -1,0 +1,66 @@
+﻿@{
+    Page.Title = "Title goes here";
+    Layout = "Layout.cshtml";
+
+    List<Receta> listaRecetas = new List<Receta>();
+    
+    if (Session["listaDeRecetas"] == null)
+    {
+        Session["listaDeRecetas"] = listaRecetas;
+    }
+
+    if (IsPost)
+    { //Es lo mismo que decir Request["btn"]=="Enviar"
+
+        listaRecetas = (List<Receta>)Session["listaDeRecetas"];
+
+        string nombre = Request["nombre"];
+        string ing1 = Request["ingrediente1"];
+        string ing2 = Request["ingrediente2"];
+        string ing3 = Request["ingrediente3"];
+        string instrucciones = Request["instrucciones"];
+
+        Receta rec = new Receta(nombre,ing1, ing2, ing3, instrucciones);
+
+        listaRecetas.Add(rec);
+
+        Session["listaDeRecetas"] = listaRecetas;
+        Response.Redirect("ContentPage2.cshtml");
+    }
+    else
+    {
+        listaRecetas = (List<Receta>)Session["listaDeRecetas"];
+    }
+}
+
+
+<div>
+    @if (listaRecetas.Count > 0)
+    {
+        <table class="table table-hover">
+            <tr>
+                <th class="text-center">Nombre Receta</th>
+                <th class="text-center">Ingredientes</th>
+                <th class="text-center">Instrucciones</th>
+            </tr>
+            @foreach (Receta item in listaRecetas)
+            {
+                <tr>
+                    <td class="text-center">@item.nombre</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li><strong>1º Ingr:</strong> @item.ing1</li>
+                            <li><strong>2º Ingr:</strong> @item.ing2</li>
+                            <li><strong>3º Ingr:</strong>@item.ing3</li>
+                        </ul>
+                    </td>
+                    <td class="text-center">@item.instrucciones</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h1>No hay ninguna receta</h1>
+    }
+</div>

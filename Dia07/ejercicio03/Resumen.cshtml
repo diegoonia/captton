@@ -1,0 +1,56 @@
+﻿@{
+    Page.Title = "Resumen";
+    Layout = "Layout.cshtml";
+
+    List<Auto> listaAutos = new List<Auto>();
+
+    if (Session["listaDeAutos"] == null)
+    {
+        Session["listaDeAutos"] = listaAutos;
+    }
+    else
+    {
+        listaAutos = (List<Auto>)Session["listaDeAutos"];
+    }
+
+    bool autoEncontrado = false;
+    string patenteAuto = " ";
+    int precio = 0;
+    int CantidadHoras = 0;
+    Auto autoItemEncontrado = new Auto(" ");
+    
+    foreach (Auto item in listaAutos)
+    {
+        if ( item.patente == Request["patente"] )
+        {
+            autoItemEncontrado = item;
+            autoEncontrado = true;
+            patenteAuto = item.patente;
+            CantidadHoras = DateTime.Now.Subtract(item.horaEntrada).Hours + 1;
+            precio = CantidadHoras * 30;
+        }
+    }
+    
+    if( autoEncontrado )
+    {
+        listaAutos.Remove(autoItemEncontrado);
+        Session["listaDeAutos"] = listaAutos;
+    }
+}
+
+
+<div>
+    @if (autoEncontrado)
+    {
+        <label>Para el auto con patente @patenteAuto</label> <br />
+        <label>Por el total de @CantidadHoras horas</label> <br />
+        <label>El precio que debe pagar es: $@precio</label>
+        
+    }
+    else
+    {
+        <h3>Auto no encontrado</h3>
+    }   
+     
+
+</div>
