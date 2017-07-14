@@ -1,0 +1,112 @@
+﻿@{
+    Page.Title = "ALTA LIBRO";
+    Layout = "../Layout.cshtml";
+    //CONEXION A LA BD
+    LibroDBEntities le = new LibroDBEntities();
+    
+    if (IsPost)
+    {
+        Libro librito = new Libro();
+        librito.ISBN = Request["ISBN"];
+        librito.nombre = Request["title"];
+        librito.fechaDeEdicion = DateTime.Parse(Request["fecha"]);
+        librito.cantidadPaginas = int.Parse(Request["paginas"]);
+
+        librito.idEditorial = int.Parse(Request["editorial"]);
+        
+        foreach (Editorial item in le.Editorial)
+        {
+            if( item.idEditorial == int.Parse(Request["editorial"]) )
+            {
+                librito.idEditorial = item.idEditorial;
+            }
+        }
+
+        foreach (Genero item in le.Genero)
+        {
+            if (item.idGenero == int.Parse(Request["genero"]))
+            {
+                librito.Genero.Add(item);
+            }
+        }
+
+        foreach (Autor item in le.Autor)
+        {
+            if (item.idAutor == int.Parse(Request["autor"]))
+            {
+                librito.Autor.Add(item);
+            }
+        }
+
+        le.Libro.Add(librito);
+
+        le.SaveChanges();
+        
+        Response.Redirect("VerLibros.cshtml");
+    } 
+}
+
+
+<center>
+<div>
+    <form class="form-horizontal" action="#" method="post">
+    
+        <br />
+        <br />
+        <br />
+
+
+        <label class="control-label">ISBN</label>
+        <input type="text" name="ISBN" placeholder="13 digits" value="">
+        <br />
+
+        <label>Título</label>
+        <input type="text" name="title" value="" />
+        <br />
+
+        <label>Fecha de Edición</label>
+        <input type="date" name="fecha" value="" />
+        <br />
+
+        <label>Cantidad de Páginas</label>
+        <input type="text" name="paginas" value="" />
+        <br />
+        <br />
+
+
+        <label>Editorial</label>
+        <select name="editorial">
+        @foreach (Editorial item in le.Editorial)
+        {
+            <option value="@item.idEditorial">@item.nombre</option>
+        }
+        </select>
+        <br />
+        <br />
+
+        <label>Autor</label>
+        <select name="autor">
+        @foreach (Autor item in le.Autor)
+        {
+            <option value="@item.idAutor">@item.nombre</option>
+        }
+        </select>
+
+        <br />
+        <br />
+
+
+        <label>Genero</label>
+        <select name="genero">
+        @foreach (Genero item in le.Genero)
+        {
+            <option value="@item.idGenero">@item.nombre</option>
+        }
+        </select>
+
+        <br />
+        <input class="btn btn-primary" type="submit" name="btn" value="Agregar" />
+
+    </form>
+</div>
+    </center>

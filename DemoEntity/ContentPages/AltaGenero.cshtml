@@ -1,0 +1,60 @@
+﻿@{
+    Page.Title = "Alta Genero";
+    Layout = "../Layout.cshtml";
+  
+    <br />
+    <br />
+    
+    if (IsPost)
+    {
+        if ( Request["nombre"] != "" )
+        {
+            //CONEXION A LA BD
+            LibroDBEntities le = new LibroDBEntities();
+            
+            bool existeGenero = false;
+            
+            foreach (Editorial item in le.Editorial)
+            {
+                if (item.nombre == Request["nombre"])
+                {
+                    existeGenero = true;
+                }
+            }
+            
+            if( !existeGenero )
+            {
+                Genero genero = new Genero();
+                genero.nombre = Request["nombre"];
+                le.Genero.Add(genero);
+                le.SaveChanges();
+            }
+            else
+            {
+                <dialog class="has-error" open>YA EXISTE UN AUTOR CON ESE GENERO</dialog>
+            }
+        }
+        else
+        {
+            <dialog class="has-error" open>DEBE COMPLETAR TODOS LOS CAMPOS</dialog>
+        }
+    }
+}
+
+
+<div>
+    <center>
+    <form class="form-horizontal" action="#" method="post">
+    
+        <br />
+        <br />
+        <br />
+
+        <label>Genero</label>
+        <input type="text" name="nombre" value="" />
+        <br />
+
+        <input class="btn btn-primary" type="submit" name="btn" value="Agregar" />
+
+    </center>
+</div>

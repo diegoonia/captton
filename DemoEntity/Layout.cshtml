@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libreria</title>
+        @RenderSection("head", required: false)
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <center>
+    <br /><br />
+    <p>
+        <a class="btn btn-success" href="AltaLibro.cshtml">Alta Libro</a>
+        <a class="btn btn-success" href="AltaAutor.cshtml">Alta Autor</a>
+        <a class="btn btn-success" href="AltaGenero.cshtml">Alta Genero</a>
+        <a class="btn btn-success" href="AltaEditorial.cshtml">Alta Editorial</a>
+    <p />
+    <p>
+        <a class="btn btn-warning" href="VerLibros.cshtml">Ver Libros</a>
+        <a class="btn btn-warning" href="VerAutores.cshtml">Ver Autores</a>
+        <a class="btn btn-warning" href="VerGeneros.cshtml">Ver Generos</a>
+        <a class="btn btn-warning" href="VerEditoriales.cshtml">Ver Editoriales</a>
+    <p/> 
+    <br />
+    <!--<a class="btn btn-warning" href="Index.cshtml">Ver listado libros</a> -->
+
+    </center>
+    <body>
+        @RenderBody()
+    </body>
+</html>

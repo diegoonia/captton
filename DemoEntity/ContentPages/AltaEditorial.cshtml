@@ -1,0 +1,68 @@
+﻿@{
+    Page.Title = "Alta Editorial";
+    Layout = "../Layout.cshtml";
+   
+    <br />
+    <br />
+    
+    if (IsPost)
+    {
+        if ( Request["nombre"] != "" )
+        {
+            //CONEXION A LA BD
+            LibroDBEntities le = new LibroDBEntities();
+            
+            bool existeEditorial = false;
+            
+            foreach (Editorial item in le.Editorial)
+            {
+                if( item.nombre == Request["nombre"] )
+                {
+                    existeEditorial = true;
+                }
+            }
+        
+            if ( !existeEditorial )
+            {
+                Editorial editorial = new Editorial();
+                editorial.nombre = Request["nombre"];
+                editorial.ubicacion = Request["ubicacion"];
+                le.Editorial.Add(editorial);
+                le.SaveChanges();
+            }
+            else
+            {
+                <dialog class="has-error" open>YA EXISTE UNA EDITORIAL CON ESE NOMBRE</dialog>
+            }
+            
+            
+        }
+        else
+        {
+            <dialog class="has-error" open>DEBE COMPLETAR TODOS LOS CAMPOS</dialog>
+        }
+    }
+}
+
+
+<div>
+    <center>
+    <form class="form-horizontal" action="#" method="post">
+    
+        <br />
+        <br />
+        <br />
+
+        <label>Nombre Editorial</label>
+        <input type="text" name="nombre" value="" />
+        <br />
+
+        <label>Ubicación</label>
+        <input type="text" name="ubicacion" value="" placeholder="Ej. Argentina, BS.AS, Av. Rivadavia 10205" />
+        <br />
+
+
+        <input class="btn btn-primary" type="submit" name="btn" value="Agregar" />
+
+    </center>
+</div>

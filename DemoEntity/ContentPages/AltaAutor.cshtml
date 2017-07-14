@@ -1,0 +1,52 @@
+﻿@{
+    Page.Title = "Title goes here";
+    Layout = "../Layout.cshtml";
+   
+    
+    if (IsPost)
+    {
+        //CONEXION A LA BD
+        LibroDBEntities le = new LibroDBEntities();
+
+        Autor autor = new Autor();
+
+
+        autor.nombre = Request["autor"];
+
+        if ( Request["nacionalidad"] == "" )
+        {
+            autor.nacionalidad = "NN";
+        }
+        else
+        {
+            autor.nacionalidad = Request["nacionalidad"];   
+        }
+
+        le.Autor.Add(autor);
+
+        le.SaveChanges();
+    }
+    
+}
+
+
+<div>
+    <center>
+    <form class="form-horizontal" action="#" method="post">
+    
+        <br />
+        <br />
+        <br />
+
+        <label>Autor</label>
+        <input type="text" name="autor" value="" />
+        <br />
+
+        <label>Nacionalidad</label>
+        <input type="text" name="nacionalidad" value="" />
+        <br />
+
+        <input class="btn btn-primary" type="submit" name="btn" value="Agregar" />
+
+    </center>
+</div>

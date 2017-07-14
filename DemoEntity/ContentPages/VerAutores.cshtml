@@ -1,0 +1,61 @@
+﻿@{
+    Page.Title = "Listado de libros";
+    Layout = "../Layout.cshtml";
+    
+    LibroDBEntities le = new LibroDBEntities();
+    
+    if ( Request["delete"] != null )
+    {
+
+        int autorABorrar = int.Parse(Request["delete"]);
+
+        Autor autor = le.Autor.SingleOrDefault(a => a.idAutor == autorABorrar);
+
+        List<Libro> listaLibros = autor.Libro.ToList();
+
+        foreach (Libro item in listaLibros)
+        {
+            foreach( Libro item2 in le.Libro)
+            {
+                if ( item2.ISBN == item.ISBN )
+                {
+                    le.Libro.Remove(item2);
+                }
+            }
+        }
+        
+        
+        listaLibros.Clear();
+        le.Autor.Remove(autor);
+        
+        le.SaveChanges();
+    }
+    
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<div>
+    <table class="table table-hover">
+
+        <tr>
+            <th>ID AUTOR</th>
+            <th>Nombre</th>
+            <th>Nacionalidad</th>
+            <th>         </th>
+        </tr>
+        @foreach (var item in le.Autor)
+        {
+            <tr>
+                <td>@item.idAutor</td>
+                <td>@item.nombre</td>
+                <td>@item.nacionalidad</td>
+
+                <td> <a class="btn btn-danger" href="?delete=@item.idAutor">Eliminar</a></td>
+            </tr>
+        }
+
+    </table>
+</div>
