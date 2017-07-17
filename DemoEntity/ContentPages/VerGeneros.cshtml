@@ -1,9 +1,59 @@
 ﻿@{
-    Page.Title = "Title goes here";
-    //Layout = "Your Layout Page goes here";
+    Page.Title = "Listado de Generos";
+    Layout = "../Layout.cshtml";
+    
+    LibroDBEntities le = new LibroDBEntities();
+    
+    if ( Request["delete"] != null )
+    {
+
+        int generoABorrar = int.Parse(Request["delete"]);
+
+        Genero genero = le.Genero.SingleOrDefault(a => a.idGenero == generoABorrar);
+
+        List<Libro> listaLibros = genero.Libro.ToList();
+
+        foreach (Libro item in listaLibros)
+        {
+            foreach( Libro item2 in le.Libro)
+            {
+                if ( item2.ISBN == item.ISBN )
+                {
+                    le.Libro.Remove(item2);
+                }
+            }
+        }
+        
+        
+        listaLibros.Clear();
+        le.Genero.Remove(genero);
+        
+        le.SaveChanges();
+    }
+    
 }
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <div>
-    
+    <table class="table table-hover">
+
+        <tr>
+            <th>ID GENERO</th>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+
+        @foreach (Genero item in le.Genero)
+        {
+            <tr>
+                <td>@item.idGenero</td>
+                <td>@item.nombre</td>
+                <td> <a class="btn btn-danger" href="?delete=@item.idGenero">Eliminar</a></td>
+            </tr>
+        }
+       
+    </table>
 </div>

@@ -34,6 +34,7 @@
             <th>ISBN</th>
             <th>Nombre</th>
             <th>Fecha de edición</th>
+            <th>Genero</th>
             <th>Editorial</th>
             <th>         </th>
         </tr>
@@ -43,7 +44,13 @@
                 <td>@item.ISBN</td>
                 <td>@item.nombre</td>
                 <td>@item.fechaDeEdicion.Day / @item.fechaDeEdicion.Month / @item.fechaDeEdicion.Year</td>
-
+                <td>
+                @foreach (Genero item2 in item.Genero)
+                {
+                       @item2.nombre
+                       <br />
+                }
+                </td>
                 @foreach (var item2 in le.Editorial)
                 {
                     if (item2.idEditorial == item.idEditorial)

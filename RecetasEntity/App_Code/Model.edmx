@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RecetasModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RecetasModelStoreContainer">
+          <EntitySet Name="Ingrediente" EntityType="RecetasModel.Store.Ingrediente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Receta" EntityType="RecetasModel.Store.Receta" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecetaIngrediente" EntityType="RecetasModel.Store.RecetaIngrediente" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_RecetaIngrediente_Ingrediente" Association="RecetasModel.Store.FK_RecetaIngrediente_Ingrediente">
+            <End Role="Ingrediente" EntitySet="Ingrediente" />
+            <End Role="RecetaIngrediente" EntitySet="RecetaIngrediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecetaIngrediente_Receta" Association="RecetasModel.Store.FK_RecetaIngrediente_Receta">
+            <End Role="Receta" EntitySet="Receta" />
+            <End Role="RecetaIngrediente" EntitySet="RecetaIngrediente" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ingrediente">
+          <Key>
+            <PropertyRef Name="idIngrediente" />
+          </Key>
+          <Property Name="idIngrediente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Receta">
+          <Key>
+            <PropertyRef Name="idReceta" />
+          </Key>
+          <Property Name="idReceta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="instrucciones" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="RecetaIngrediente">
+          <Key>
+            <PropertyRef Name="idIngrediente" />
+            <PropertyRef Name="idReceta" />
+          </Key>
+          <Property Name="idIngrediente" Type="int" Nullable="false" />
+          <Property Name="idReceta" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="unidadDeMedida" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_RecetaIngrediente_Ingrediente">
+          <End Role="Ingrediente" Type="RecetasModel.Store.Ingrediente" Multiplicity="1" />
+          <End Role="RecetaIngrediente" Type="RecetasModel.Store.RecetaIngrediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingrediente">
+              <PropertyRef Name="idIngrediente" />
+            </Principal>
+            <Dependent Role="RecetaIngrediente">
+              <PropertyRef Name="idIngrediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecetaIngrediente_Receta">
+          <End Role="Receta" Type="RecetasModel.Store.Receta" Multiplicity="1" />
+          <End Role="RecetaIngrediente" Type="RecetasModel.Store.RecetaIngrediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receta">
+              <PropertyRef Name="idReceta" />
+            </Principal>
+            <Dependent Role="RecetaIngrediente">
+              <PropertyRef Name="idIngrediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecetasModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RecetasEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Ingrediente" EntityType="RecetasModel.Ingrediente" />
+          <EntitySet Name="Receta" EntityType="RecetasModel.Receta" />
+          <EntitySet Name="RecetaIngrediente" EntityType="RecetasModel.RecetaIngrediente" />
+          <AssociationSet Name="FK_RecetaIngrediente_Ingrediente" Association="RecetasModel.FK_RecetaIngrediente_Ingrediente">
+            <End Role="Ingrediente" EntitySet="Ingrediente" />
+            <End Role="RecetaIngrediente" EntitySet="RecetaIngrediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecetaIngrediente_Receta" Association="RecetasModel.FK_RecetaIngrediente_Receta">
+            <End Role="Receta" EntitySet="Receta" />
+            <End Role="RecetaIngrediente" EntitySet="RecetaIngrediente" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ingrediente">
+          <Key>
+            <PropertyRef Name="idIngrediente" />
+          </Key>
+          <Property Name="idIngrediente" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RecetaIngrediente" Relationship="RecetasModel.FK_RecetaIngrediente_Ingrediente" FromRole="Ingrediente" ToRole="RecetaIngrediente" />
+        </EntityType>
+        <EntityType Name="Receta">
+          <Key>
+            <PropertyRef Name="idReceta" />
+          </Key>
+          <Property Name="idReceta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="instrucciones" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RecetaIngrediente" Relationship="RecetasModel.FK_RecetaIngrediente_Receta" FromRole="Receta" ToRole="RecetaIngrediente" />
+        </EntityType>
+        <EntityType Name="RecetaIngrediente">
+          <Key>
+            <PropertyRef Name="idIngrediente" />
+            <PropertyRef Name="idReceta" />
+          </Key>
+          <Property Name="idIngrediente" Type="Int32" Nullable="false" />
+          <Property Name="idReceta" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="unidadDeMedida" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Ingrediente" Relationship="RecetasModel.FK_RecetaIngrediente_Ingrediente" FromRole="RecetaIngrediente" ToRole="Ingrediente" />
+          <NavigationProperty Name="Receta" Relationship="RecetasModel.FK_RecetaIngrediente_Receta" FromRole="RecetaIngrediente" ToRole="Receta" />
+        </EntityType>
+        <Association Name="FK_RecetaIngrediente_Ingrediente">
+          <End Role="Ingrediente" Type="RecetasModel.Ingrediente" Multiplicity="1" />
+          <End Role="RecetaIngrediente" Type="RecetasModel.RecetaIngrediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingrediente">
+              <PropertyRef Name="idIngrediente" />
+            </Principal>
+            <Dependent Role="RecetaIngrediente">
+              <PropertyRef Name="idIngrediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecetaIngrediente_Receta">
+          <End Role="Receta" Type="RecetasModel.Receta" Multiplicity="1" />
+          <End Role="RecetaIngrediente" Type="RecetasModel.RecetaIngrediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receta">
+              <PropertyRef Name="idReceta" />
+            </Principal>
+            <Dependent Role="RecetaIngrediente">
+              <PropertyRef Name="idIngrediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecetasModelStoreContainer" CdmEntityContainer="RecetasEntities">
+          <EntitySetMapping Name="Ingrediente">
+            <EntityTypeMapping TypeName="RecetasModel.Ingrediente">
+              <MappingFragment StoreEntitySet="Ingrediente">
+                <ScalarProperty Name="idIngrediente" ColumnName="idIngrediente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receta">
+            <EntityTypeMapping TypeName="RecetasModel.Receta">
+              <MappingFragment StoreEntitySet="Receta">
+                <ScalarProperty Name="idReceta" ColumnName="idReceta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="instrucciones" ColumnName="instrucciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecetaIngrediente">
+            <EntityTypeMapping TypeName="RecetasModel.RecetaIngrediente">
+              <MappingFragment StoreEntitySet="RecetaIngrediente">
+                <ScalarProperty Name="idIngrediente" ColumnName="idIngrediente" />
+                <ScalarProperty Name="idReceta" ColumnName="idReceta" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="unidadDeMedida" ColumnName="unidadDeMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

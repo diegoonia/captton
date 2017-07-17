@@ -65,7 +65,7 @@ public partial class Libro
     public int idEditorial { get; set; }
     public int cantidadPaginas { get; set; }
 
-    public virtual Editorial Editorial { get; set; } //Relacion N-1
-    public virtual ICollection<Autor> Autor { get; set; } //Relacion N-N
-    public virtual ICollection<Genero> Genero { get; set; } //Relacion N-N
+    public virtual Editorial Editorial { get; set; }
+    public virtual ICollection<Autor> Autor { get; set; }
+    public virtual ICollection<Genero> Genero { get; set; }
 }

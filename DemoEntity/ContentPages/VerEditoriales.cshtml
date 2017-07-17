@@ -1,11 +1,53 @@
 ﻿@{
-    Page.Title = "Title goes here";
-    //Layout = "Your Layout Page goes here";
+    Page.Title = "Listado de editoriales";
+    Layout = "../Layout.cshtml";
+    
+    LibroDBEntities le = new LibroDBEntities();
+    
+    if ( Request["delete"] != null )
+    {
+
+        int editorialABorrar = int.Parse(Request["delete"]);
+
+        Editorial editorial = le.Editorial.SingleOrDefault(a => a.idEditorial == editorialABorrar);
+
+        List<Libro> listaLibrosABorrar = editorial.Libro.ToList();
+
+        listaLibrosABorrar.Clear();
+        
+        
+        
+        
+        le.Editorial.Remove(editorial);
+        
+        le.SaveChanges();
+    }
+    
 }
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <div>
-    
+    <table class="table table-hover">
 
+        <tr>
+            <th>ID EDITORIAL</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>         </th>
+        </tr>
+        @foreach (var item in le.Editorial)
+        {
+            <tr>
+                <td>@item.idEditorial</td>
+                <td>@item.nombre</td>
+                <td>@item.ubicacion</td>
 
+                <td> <a class="btn btn-danger" href="?delete=@item.idEditorial">Eliminar</a></td>
+            </tr>
+        }
+
+    </table>
 </div>
