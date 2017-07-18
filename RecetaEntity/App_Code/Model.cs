@@ -39,8 +39,8 @@ public partial class Receta
 
 public partial class RecetaIngrediente
 {
-    public int idIngrediente { get; set; }
     public int idReceta { get; set; }
+    public int idIngrediente { get; set; }
     public int cantidad { get; set; }
     public string unidadDeMedida { get; set; }
 

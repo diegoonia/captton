@@ -1,0 +1,43 @@
+﻿@{
+    Page.Title = "Alta ingrediente";
+    Layout = "Layout.cshtml";
+    
+    if(IsPost)
+    {
+        RecetaDBEntities re = new RecetaDBEntities();
+
+        Ingrediente ingrediente = new Ingrediente();
+
+        ingrediente.nombre = Request["nombreIngrediente"];
+        
+        Ingrediente consultarIngrediente = re.Ingrediente.SingleOrDefault(i => i.nombre == ingrediente.nombre);
+        
+        if( consultarIngrediente == null)
+        {
+            re.Ingrediente.Add(ingrediente);
+            re.SaveChanges();
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                <strong>Atención!</strong> Ya existe un ingrediente con ese nombre
+            </div>
+        }
+
+        
+    }
+    
+}
+
+
+<div>
+    <form action="#" method="post">
+        
+        <h2>Agregar ingrediente</h2>
+
+        <label>Nombre</label>
+        <input type="text" name="nombreIngrediente" value="" />
+        <br /><br />
+        <input class="btn btn-default" type="submit" name="alta" value="AGREGAR" />
+    </form>
+</div>

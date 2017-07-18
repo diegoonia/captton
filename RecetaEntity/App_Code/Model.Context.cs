@@ -11,10 +11,10 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-public partial class RecetasEntities : DbContext
+public partial class RecetaDBEntities : DbContext
 {
-    public RecetasEntities()
-        : base("name=RecetasEntities")
+    public RecetaDBEntities()
+        : base("name=RecetaDBEntities")
     {
     }
 

@@ -1,0 +1,153 @@
+﻿@{
+    Page.Title = "Alta Receta";
+    Layout = "Layout.cshtml";
+
+    RecetaDBEntities re = new RecetaDBEntities();
+
+    if (IsPost)
+    {
+        //List<RecetaIngrediente> listaIngredientes = new List<RecetaIngrediente>();
+        Ingrediente ingredienteAux = new Ingrediente();
+        Ingrediente ingredienteAux2 = new Ingrediente();
+        RecetaIngrediente recIngAux = new RecetaIngrediente();
+        RecetaIngrediente recIngAux2 = new RecetaIngrediente();
+        if (Request["nombreIngrediente1"] != "")
+        {
+            Receta receta = new Receta();
+            receta.nombre = Request["nombreReceta"];
+            receta.instrucciones = Request["instrucciones"];
+            re.Receta.Add(receta);
+            re.SaveChanges(); //Agrego la receta a la BD para obtener el id mas tarde
+
+            string nombreIngrediente1 = Request["nombreIngrediente1"];
+            ingredienteAux = re.Ingrediente.SingleOrDefault(i => i.nombre == nombreIngrediente1);
+            //GUARDO TODOS LOS DATOS DE LA RELACION RECETA-INGREDIENTE
+            recIngAux.idReceta = receta.idReceta;
+            recIngAux.cantidad = int.Parse(Request["cantidad1"]);
+            recIngAux.unidadDeMedida = Request["unidad1"];
+
+            if (ingredienteAux == null)
+            {
+                ingredienteAux = new Ingrediente();
+                ingredienteAux.nombre = nombreIngrediente1;
+                re.Ingrediente.Add(ingredienteAux);
+                re.SaveChanges(); //como no existe ese ingrediente lo agrego, y lo guardo para obtener el id.
+            }
+            recIngAux.idIngrediente = ingredienteAux.idIngrediente;
+            receta.RecetaIngrediente.Add(recIngAux);
+            ingredienteAux.RecetaIngrediente.Add(recIngAux);
+            re.SaveChanges();
+            
+            if (Request["nombreIngrediente2"] != "")
+            {
+                string nombreIngrediente2 = Request["nombreIngrediente2"];
+                ingredienteAux2 = re.Ingrediente.SingleOrDefault(i => i.nombre == nombreIngrediente2);
+                recIngAux2.idReceta = receta.idReceta;
+                recIngAux2.cantidad = int.Parse(Request["cantidad2"]);
+                recIngAux2.unidadDeMedida = Request["unidad2"];
+
+                if (ingredienteAux2 == null)
+                {
+                    ingredienteAux2 = new Ingrediente();
+                    ingredienteAux2.nombre = nombreIngrediente2;
+                    re.Ingrediente.Add(ingredienteAux2);
+                    re.SaveChanges(); //como no existe ese ingrediente lo agrego, y lo guardo para obtener el id.
+                }
+                recIngAux2.idIngrediente = ingredienteAux2.idIngrediente;
+                receta.RecetaIngrediente.Add(recIngAux2);
+                ingredienteAux2.RecetaIngrediente.Add(recIngAux2);
+                re.SaveChanges();
+                
+                if (Request["nombreIngrediente3"] != "")
+                {
+                    string nombreIngrediente3 = Request["nombreIngrediente3"];
+                    ingredienteAux = re.Ingrediente.SingleOrDefault(i => i.nombre == nombreIngrediente2);
+                    recIngAux.idReceta = receta.idReceta;
+                    recIngAux.cantidad = int.Parse(Request["cantidad3"]);
+                    recIngAux.unidadDeMedida = Request["unidad3"];
+
+                    if (ingredienteAux == null)
+                    {
+                        ingredienteAux = new Ingrediente();
+                        ingredienteAux.nombre = nombreIngrediente3;
+                        re.Ingrediente.Add(ingredienteAux);
+                        re.SaveChanges(); //como no existe ese ingrediente lo agrego, y lo guardo para obtener el id.
+                    }
+                    recIngAux.idIngrediente = ingredienteAux.idIngrediente;
+                    re.RecetaIngrediente.Add(recIngAux);
+                    re.SaveChanges(); 
+                    
+                    
+                }
+            }
+
+        }
+        else
+        {
+        <div class="alert alert-danger">
+            <strong>Atención!</strong> Debe completar al menos un ingrediente
+        </div>
+        }
+        
+    }
+    
+}
+
+
+<form action="#" method="post">
+
+    <h4>Nombre Receta</h4>
+    <input type="text" name="nombreReceta" value="" />
+    <br />
+    <br />
+
+    <h4>Ingredientes</h4>
+    <br />
+    <div id="fondo">
+        <label>Nombre ingrediente</label>
+        <input type="text" name="nombreIngrediente1" value="" />
+
+        <label>Cantidad</label>
+        <input type="text" name="cantidad1" value="" />
+
+        <label>Unidad</label>
+        <input type="text" name="unidad1" value="" />
+
+
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#otro2">+</button>
+        <div id="otro2" class="collapse">
+            <label>Nombre ingrediente</label>
+            <input type="text" name="nombreIngrediente2" value="" />
+
+            <label>Cantidad</label>
+            <input type="text" name="cantidad2" value="" />
+
+            <label>Unidad</label>
+            <input type="text" name="unidad2" value="" />
+
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#otro3">+</button>
+            <div id="otro3" class="collapse">
+                <label>Nombre ingrediente</label>
+                <input type="text" name="nombreIngrediente3" value="" />
+
+                <label>Cantidad</label>
+                <input type="text" name="cantidad3" value="" />
+
+                <label>Unidad</label>
+                <input type="text" name="unidad3" value="" />
+            </div>
+        </div>
+
+        <br />
+        <br />
+    </div>
+
+    <h4>Instrucciones</h4>
+    <textarea  rows="6" cols="100" maxlength="500" name="instrucciones"></textarea>
+    <br />
+
+    <center>
+        <input id="center" class="btn btn-default" type="submit" name="altaReceta" value="Agregar receta" />
+    </center>
+
+</form>
