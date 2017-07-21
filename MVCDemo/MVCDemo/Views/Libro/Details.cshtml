@@ -1,0 +1,55 @@
+﻿@model MVCDemo.Models.Libro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<h2>Detalle</h2>
+
+<fieldset>
+    <legend>Libro</legend>
+
+    <div class="display-label">
+         <label><strong>ISBN:</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ISBN)
+    </div>
+
+    <div class="display-label">
+         <label><strong>Título:</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.titulo)
+    </div>
+
+    <div class="display-label">
+         <label><strong>Fecha de edición:</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaDeEdicion.Day) /
+        @Html.DisplayFor(model => model.fechaDeEdicion.Month) /
+        @Html.DisplayFor(model => model.fechaDeEdicion.Year)
+    </div>
+
+    <div class="display-label">
+         <label><strong>Nombre editorial:</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Editorial.nombre)
+    </div>
+
+    <div class="display-label">
+         <label><strong>Cantidad páginas:</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cantidadPaginas)
+    </div>
+</fieldset>
+<p>
+    <br />
+    <label class="btn btn-info">@Html.ActionLink("Back to List", "Index")</label>
+</p>

@@ -1,0 +1,59 @@
+﻿@model EstacionamientoMVC.Models.Vehiculo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="text-center">
+<br />
+<br />
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Vehiculo</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.patente)
+        </div>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.patente)
+            @Html.DisplayFor(model => model.patente)
+            @Html.ValidationMessageFor(model => model.patente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idTipo, "TipoDeVehiculo")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idTipo", String.Empty)
+            @Html.ValidationMessageFor(model => model.idTipo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.marca)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.marca)
+            @Html.ValidationMessageFor(model => model.marca)
+        </div>
+        <br /><br />
+        <p>
+            <input class = "btn btn-success" type="submit" value="Guardar" />
+        </p>
+    </fieldset>
+}
+
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

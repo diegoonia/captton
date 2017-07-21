@@ -1,0 +1,89 @@
+﻿@model IEnumerable<EstacionamientoMVC.Models.Registros>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Layout.cshtml";
+}
+
+<h2 class="text-center bg-primary"><br />Lista de registros<br /></h2>
+<p>
+    @Html.ActionLink("INGRESAR NUEVO REGISTRO", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Patente
+        </th>
+        <th>
+            Nro. Parcela
+        </th>
+        <th>
+            Fecha ingreso
+        </th>
+        <th>
+            Fecha egreso
+        </th>
+        <th>
+            Cantidad de horas
+        </th>
+        <th>
+            Monto total
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.patente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parcela.idParcela)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaEgreso)
+        </td>
+        <td>
+            @if( item.fechaEgreso != null)
+            {
+                int horas = item.fechaEgreso.Value.Subtract(item.fechaIngreso).Hours;
+                 
+                if (horas != 0)
+                {
+                    <label>@horas</label>
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.monto)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new {id= item.fechaIngreso.ToString("yyyyMMddHHmmssfff")}, new { @class = "btn btn-default" } )
+            @Html.ActionLink("Detalles", "Details", new {id= item.fechaIngreso.ToString("yyyyMMddHHmmssfff")}, new { @class = "btn btn-default" } )
+            @if( item.fechaEgreso == null)
+            {
+                @Html.ActionLink("Salida", "Delete", new { id = item.fechaIngreso.ToString("yyyyMMddHHmmssfff") }, new { @class = "btn btn-danger" })
+            }
+        </td>
+    </tr>
+}
+
+</table>
+<br /><br />
+
+@if (Session["total"] != null)
+{
+    <h2>Total recaudado: @Session["total"]</h2>
+}
+<br /><br />
+
+<h2>Resumen del día</h2>
+
+<form action="#" method="post">
+    <label>Seleccione una fecha</label>
+    <input type="date" name="calendario"/>
+    <input class="btn btn-primary" type="submit" name="btnFecha" value="Buscar" />
+</form>

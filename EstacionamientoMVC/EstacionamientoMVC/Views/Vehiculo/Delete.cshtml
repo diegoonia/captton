@@ -1,0 +1,43 @@
+﻿@model EstacionamientoMVC.Models.Vehiculo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="text-center">
+<br />
+<br />
+    <div class="display-label">
+         <strong>Patente:</strong>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.patente)
+    </div>
+
+    <div class="display-label">
+         <strong>Tipo de vehículo:</strong>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoDeVehiculo.nombre)
+    </div>
+
+    <div class="display-label">
+         <strong>Marca:</strong>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.marca)
+    </div>
+<br /><br />
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input class="btn btn-danger" type="submit" value="Borrar" />
+        <br /><br />
+        @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-primary" } )
+    </p>
+}
+</div>

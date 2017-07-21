@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EstacionamientoMVC.Models.TipoDeVehiculo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Layout.cshtml";
+}
+
+<h2 class="text-center bg-primary"><br />Tarifas<br /></h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Tipo de vehículo
+        </th>
+        <th>
+            Tarifa
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarifa)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar tarifa", "Edit", new { id=item.idTipo }, new { @class = "btn btn-info" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EstacionamientoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EstacionamientoModelStoreContainer">
+    <EntitySet Name="Parcela" EntityType="EstacionamientoModel.Store.Parcela" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Registros" EntityType="EstacionamientoModel.Store.Registros" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoDeVehiculo" EntityType="EstacionamientoModel.Store.TipoDeVehiculo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vehiculo" EntityType="EstacionamientoModel.Store.Vehiculo" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Registros_Parcela" Association="EstacionamientoModel.Store.FK_Registros_Parcela">
+      <End Role="Parcela" EntitySet="Parcela" />
+      <End Role="Registros" EntitySet="Registros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registros_Vehiculo" Association="EstacionamientoModel.Store.FK_Registros_Vehiculo">
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+      <End Role="Registros" EntitySet="Registros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehiculo_TipoDeVehiculo" Association="EstacionamientoModel.Store.FK_Vehiculo_TipoDeVehiculo">
+      <End Role="TipoDeVehiculo" EntitySet="TipoDeVehiculo" />
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Parcela">
+    <Key>
+      <PropertyRef Name="idParcela" />
+    </Key>
+    <Property Name="idParcela" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="libre" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registros">
+    <Key>
+      <PropertyRef Name="patente" />
+      <PropertyRef Name="idParcela" />
+      <PropertyRef Name="fechaIngreso" />
+    </Key>
+    <Property Name="patente" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="idParcela" Type="int" Nullable="false" />
+    <Property Name="fechaIngreso" Type="datetime" Nullable="false" />
+    <Property Name="fechaEgreso" Type="datetime" />
+    <Property Name="monto" Type="float" />
+  </EntityType>
+  <EntityType Name="TipoDeVehiculo">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="tarifa" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehiculo">
+    <Key>
+      <PropertyRef Name="patente" />
+    </Key>
+    <Property Name="patente" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="idTipo" Type="int" Nullable="false" />
+    <Property Name="marca" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK_Registros_Parcela">
+    <End Role="Parcela" Type="EstacionamientoModel.Store.Parcela" Multiplicity="1" />
+    <End Role="Registros" Type="EstacionamientoModel.Store.Registros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parcela">
+        <PropertyRef Name="idParcela" />
+      </Principal>
+      <Dependent Role="Registros">
+        <PropertyRef Name="idParcela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registros_Vehiculo">
+    <End Role="Vehiculo" Type="EstacionamientoModel.Store.Vehiculo" Multiplicity="1" />
+    <End Role="Registros" Type="EstacionamientoModel.Store.Registros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="patente" />
+      </Principal>
+      <Dependent Role="Registros">
+        <PropertyRef Name="patente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehiculo_TipoDeVehiculo">
+    <End Role="TipoDeVehiculo" Type="EstacionamientoModel.Store.TipoDeVehiculo" Multiplicity="1" />
+    <End Role="Vehiculo" Type="EstacionamientoModel.Store.Vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDeVehiculo">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="Vehiculo">
+        <PropertyRef Name="idTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

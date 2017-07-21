@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibrosModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LibrosEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Autor" EntityType="LibrosModel.Autor" />
+    <EntitySet Name="Editorial" EntityType="LibrosModel.Editorial" />
+    <EntitySet Name="Genero" EntityType="LibrosModel.Genero" />
+    <EntitySet Name="Libro" EntityType="LibrosModel.Libro" />
+    <AssociationSet Name="FK_Libro_Editorial" Association="LibrosModel.FK_Libro_Editorial">
+      <End Role="Editorial" EntitySet="Editorial" />
+      <End Role="Libro" EntitySet="Libro" />
+    </AssociationSet>
+    <AssociationSet Name="LibroAutor" Association="LibrosModel.LibroAutor">
+      <End Role="Autor" EntitySet="Autor" />
+      <End Role="Libro" EntitySet="Libro" />
+    </AssociationSet>
+    <AssociationSet Name="LibroGenero" Association="LibrosModel.LibroGenero">
+      <End Role="Genero" EntitySet="Genero" />
+      <End Role="Libro" EntitySet="Libro" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Autor">
+    <Key>
+      <PropertyRef Name="idAutor" />
+    </Key>
+    <Property Name="idAutor" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="nacionalidad" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Libro" Relationship="LibrosModel.LibroAutor" FromRole="Autor" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Editorial">
+    <Key>
+      <PropertyRef Name="idEditorial" />
+    </Key>
+    <Property Name="idEditorial" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="ubicacion" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Libro" Relationship="LibrosModel.FK_Libro_Editorial" FromRole="Editorial" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Genero">
+    <Key>
+      <PropertyRef Name="idGenero" />
+    </Key>
+    <Property Name="idGenero" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Libro" Relationship="LibrosModel.LibroGenero" FromRole="Genero" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Libro">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="titulo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="fechaDeEdicion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="idEditorial" Type="Int32" Nullable="false" />
+    <Property Name="cantidadPaginas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Editorial" Relationship="LibrosModel.FK_Libro_Editorial" FromRole="Libro" ToRole="Editorial" />
+    <NavigationProperty Name="Autor" Relationship="LibrosModel.LibroAutor" FromRole="Libro" ToRole="Autor" />
+    <NavigationProperty Name="Genero" Relationship="LibrosModel.LibroGenero" FromRole="Libro" ToRole="Genero" />
+  </EntityType>
+  <Association Name="FK_Libro_Editorial">
+    <End Role="Editorial" Type="LibrosModel.Editorial" Multiplicity="1" />
+    <End Role="Libro" Type="LibrosModel.Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editorial">
+        <PropertyRef Name="idEditorial" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="idEditorial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LibroAutor">
+    <End Role="Autor" Type="LibrosModel.Autor" Multiplicity="*" />
+    <End Role="Libro" Type="LibrosModel.Libro" Multiplicity="*" />
+  </Association>
+  <Association Name="LibroGenero">
+    <End Role="Genero" Type="LibrosModel.Genero" Multiplicity="*" />
+    <End Role="Libro" Type="LibrosModel.Libro" Multiplicity="*" />
+  </Association>
+</Schema>

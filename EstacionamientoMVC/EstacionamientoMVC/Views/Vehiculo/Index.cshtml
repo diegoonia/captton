@@ -1,0 +1,89 @@
+﻿@model IEnumerable<EstacionamientoMVC.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Layout.cshtml";
+}
+
+<h2 class="text-center bg-primary"><br />Lista de vehículos<br /></h2>
+
+<p>
+    @Html.ActionLink("INGRESAR NUEVO VEHÍCULO", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Patente
+        </th>
+        <th>
+            Tipo de vehículo
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.patente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDeVehiculo.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.marca)
+        </td>
+        
+            @{
+            bool estaEstacionado = false;
+                foreach (var itemRegistro in item.Registros)
+                {
+                    if( itemRegistro.fechaEgreso == null )
+                    {
+                        estaEstacionado = true;
+                    }
+                }
+                if (estaEstacionado)
+                {
+                    <td bgcolor="#DF013A"><font color="white">ESTACIONADO</font></td>
+                }
+                else
+                {
+                    <td bgcolor="#04B404"><font color="white">NO ESTACIONADO</font></td>
+                }
+            }
+        
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.patente }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Detalles", "Details", new { id=item.patente }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.patente }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<br /><br />
+<h2>Filtrar</h2>
+
+<form action="#" method="post">
+    <label>Por patente</label>
+    @Html.DropDownList("pat", "Seleccione patente del vehículo")
+    <br />
+    <input class="btn btn-primary" type="submit" name="btnFiltro" value="Buscar" />
+
+    <br /><br />
+    <label>Estacionados / No estacionados</label>
+    <select name="est">
+      <option value="todos">Todos</option>
+      <option value="estacionados">Estacionados</option>
+      <option value="noestacionados">No Estacionados</option>
+    </select>
+    <br />
+    <input class="btn btn-primary" type="submit" name="btnEstacionados" value="Buscar" />
+</form>

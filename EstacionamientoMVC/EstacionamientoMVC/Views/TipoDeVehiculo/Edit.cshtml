@@ -1,0 +1,52 @@
+﻿@model EstacionamientoMVC.Models.TipoDeVehiculo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<h2>Modificar tarifa</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TipoDeVehiculo</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idTipo)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.idTipo)
+            @Html.ValidationMessageFor(model => model.idTipo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tarifa)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tarifa)
+            @Html.ValidationMessageFor(model => model.tarifa)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

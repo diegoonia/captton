@@ -1,0 +1,66 @@
+﻿@model MVCDemo.Models.Libro
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Libro</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ISBN)
+        </div>
+        <div >
+            @Html.DisplayFor(model => model.ISBN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.titulo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.titulo)
+            @Html.ValidationMessageFor(model => model.titulo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaDeEdicion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaDeEdicion)
+            @Html.ValidationMessageFor(model => model.fechaDeEdicion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idEditorial, "Editorial")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idEditorial", String.Empty)
+            @Html.ValidationMessageFor(model => model.idEditorial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cantidadPaginas)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cantidadPaginas)
+            @Html.ValidationMessageFor(model => model.cantidadPaginas)
+        </div>
+
+        <p>
+            <input class="btn btn-warning" type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    <label class="btn btn-info">@Html.ActionLink("Volver a la lista", "Index")</label>
+</div>

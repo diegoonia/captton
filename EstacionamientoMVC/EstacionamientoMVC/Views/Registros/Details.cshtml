@@ -1,0 +1,50 @@
+﻿@model EstacionamientoMVC.Models.Registros
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Registros</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Vehiculo.marca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Vehiculo.marca)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Parcela.idParcela)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parcela.idParcela)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaIngreso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaIngreso)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaEgreso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaEgreso)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.monto)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.monto)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,64 @@
+﻿@model EstacionamientoMVC.Models.Registros
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Registros</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.patente, "Vehiculo")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("patente", String.Empty)
+            @Html.ValidationMessageFor(model => model.patente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idParcela, "Parcela")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idParcela", String.Empty)
+            @Html.ValidationMessageFor(model => model.idParcela)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaIngreso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaIngreso)
+            @Html.ValidationMessageFor(model => model.fechaIngreso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaEgreso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaEgreso)
+            @Html.ValidationMessageFor(model => model.fechaEgreso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.monto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.monto)
+            @Html.ValidationMessageFor(model => model.monto)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibrosModelStoreContainer" CdmEntityContainer="LibrosEntities">
+    <EntitySetMapping Name="Autor">
+      <EntityTypeMapping TypeName="LibrosModel.Autor">
+        <MappingFragment StoreEntitySet="Autor">
+          <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Editorial">
+      <EntityTypeMapping TypeName="LibrosModel.Editorial">
+        <MappingFragment StoreEntitySet="Editorial">
+          <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genero">
+      <EntityTypeMapping TypeName="LibrosModel.Genero">
+        <MappingFragment StoreEntitySet="Genero">
+          <ScalarProperty Name="idGenero" ColumnName="idGenero" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Libro">
+      <EntityTypeMapping TypeName="LibrosModel.Libro">
+        <MappingFragment StoreEntitySet="Libro">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="fechaDeEdicion" ColumnName="fechaDeEdicion" />
+          <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
+          <ScalarProperty Name="cantidadPaginas" ColumnName="cantidadPaginas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="LibroAutor" TypeName="LibrosModel.LibroAutor" StoreEntitySet="LibroAutor">
+      <EndProperty Name="Autor">
+        <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+      </EndProperty>
+      <EndProperty Name="Libro">
+        <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LibroGenero" TypeName="LibrosModel.LibroGenero" StoreEntitySet="LibroGenero">
+      <EndProperty Name="Genero">
+        <ScalarProperty Name="idGenero" ColumnName="idGenero" />
+      </EndProperty>
+      <EndProperty Name="Libro">
+        <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

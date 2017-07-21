@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EstacionamientoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EstacionamientoEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Parcela" EntityType="EstacionamientoModel.Parcela" />
+    <EntitySet Name="Registros" EntityType="EstacionamientoModel.Registros" />
+    <EntitySet Name="TipoDeVehiculo" EntityType="EstacionamientoModel.TipoDeVehiculo" />
+    <EntitySet Name="Vehiculo" EntityType="EstacionamientoModel.Vehiculo" />
+    <AssociationSet Name="FK_Registros_Parcela" Association="EstacionamientoModel.FK_Registros_Parcela">
+      <End Role="Parcela" EntitySet="Parcela" />
+      <End Role="Registros" EntitySet="Registros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registros_Vehiculo" Association="EstacionamientoModel.FK_Registros_Vehiculo">
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+      <End Role="Registros" EntitySet="Registros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehiculo_TipoDeVehiculo" Association="EstacionamientoModel.FK_Vehiculo_TipoDeVehiculo">
+      <End Role="TipoDeVehiculo" EntitySet="TipoDeVehiculo" />
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Parcela">
+    <Key>
+      <PropertyRef Name="idParcela" />
+    </Key>
+    <Property Name="idParcela" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="libre" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Registros" Relationship="EstacionamientoModel.FK_Registros_Parcela" FromRole="Parcela" ToRole="Registros" />
+  </EntityType>
+  <EntityType Name="Registros">
+    <Key>
+      <PropertyRef Name="patente" />
+      <PropertyRef Name="idParcela" />
+      <PropertyRef Name="fechaIngreso" />
+    </Key>
+    <Property Name="patente" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="idParcela" Type="Int32" Nullable="false" />
+    <Property Name="fechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechaEgreso" Type="DateTime" Precision="3" />
+    <Property Name="monto" Type="Double" />
+    <NavigationProperty Name="Parcela" Relationship="EstacionamientoModel.FK_Registros_Parcela" FromRole="Registros" ToRole="Parcela" />
+    <NavigationProperty Name="Vehiculo" Relationship="EstacionamientoModel.FK_Registros_Vehiculo" FromRole="Registros" ToRole="Vehiculo" />
+  </EntityType>
+  <EntityType Name="TipoDeVehiculo">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="tarifa" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Vehiculo" Relationship="EstacionamientoModel.FK_Vehiculo_TipoDeVehiculo" FromRole="TipoDeVehiculo" ToRole="Vehiculo" />
+  </EntityType>
+  <EntityType Name="Vehiculo">
+    <Key>
+      <PropertyRef Name="patente" />
+    </Key>
+    <Property Name="patente" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="idTipo" Type="Int32" Nullable="false" />
+    <Property Name="marca" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Registros" Relationship="EstacionamientoModel.FK_Registros_Vehiculo" FromRole="Vehiculo" ToRole="Registros" />
+    <NavigationProperty Name="TipoDeVehiculo" Relationship="EstacionamientoModel.FK_Vehiculo_TipoDeVehiculo" FromRole="Vehiculo" ToRole="TipoDeVehiculo" />
+  </EntityType>
+  <Association Name="FK_Registros_Parcela">
+    <End Role="Parcela" Type="EstacionamientoModel.Parcela" Multiplicity="1" />
+    <End Role="Registros" Type="EstacionamientoModel.Registros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parcela">
+        <PropertyRef Name="idParcela" />
+      </Principal>
+      <Dependent Role="Registros">
+        <PropertyRef Name="idParcela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registros_Vehiculo">
+    <End Role="Vehiculo" Type="EstacionamientoModel.Vehiculo" Multiplicity="1" />
+    <End Role="Registros" Type="EstacionamientoModel.Registros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="patente" />
+      </Principal>
+      <Dependent Role="Registros">
+        <PropertyRef Name="patente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehiculo_TipoDeVehiculo">
+    <End Role="TipoDeVehiculo" Type="EstacionamientoModel.TipoDeVehiculo" Multiplicity="1" />
+    <End Role="Vehiculo" Type="EstacionamientoModel.Vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDeVehiculo">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="Vehiculo">
+        <PropertyRef Name="idTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

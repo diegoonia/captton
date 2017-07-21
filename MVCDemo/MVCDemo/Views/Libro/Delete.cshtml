@@ -1,0 +1,54 @@
+﻿@model MVCDemo.Models.Libro
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Libro</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ISBN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ISBN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.titulo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.titulo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaDeEdicion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaDeEdicion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Editorial.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Editorial.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cantidadPaginas)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cantidadPaginas)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

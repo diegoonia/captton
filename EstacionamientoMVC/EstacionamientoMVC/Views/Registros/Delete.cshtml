@@ -1,0 +1,69 @@
+﻿@model EstacionamientoMVC.Models.Registros
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Registros</legend>
+
+    <div class="display-label">
+         <strong>Patente</strong>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Vehiculo.patente)
+    </div>
+
+    <div class="display-label">
+         <strong>Parcela</strong>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parcela.idParcela)
+    </div>
+
+    <div class="display-label">
+         <strong>Fecha ingreso</strong>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaIngreso)
+    </div>
+
+    <div class="display-label">
+         <strong>Fecha de salida</strong>
+    </div>
+    <div class="display-field">
+        @DateTime.Now
+    </div>
+
+    <div class="display-label">
+         <strong>Tarifa por tipo de vehiculo</strong>
+    </div>
+    <div class="display-field">
+        @Model.Vehiculo.TipoDeVehiculo.tarifa
+    </div>
+
+    <div class="display-label">
+         <strong>Tarifa por tipo de vehiculo</strong>
+    </div>
+    <div class="display-field">
+        @Model.Vehiculo.TipoDeVehiculo.tarifa
+    </div>
+
+    <div class="display-label">
+         <strong>Monto total</strong>
+    </div>
+    <div class="display-field">
+        @Session["montoTotal"]
+        
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

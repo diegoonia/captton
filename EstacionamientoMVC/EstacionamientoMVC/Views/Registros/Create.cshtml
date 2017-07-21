@@ -1,0 +1,39 @@
+﻿@model EstacionamientoMVC.Models.Registros
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Registros</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.patente, "Vehiculo")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("patente", String.Empty)
+            @Html.ValidationMessageFor(model => model.patente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idParcela, "Parcela")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idParcela", String.Empty)
+            @Html.ValidationMessageFor(model => model.idParcela)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
