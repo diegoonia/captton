@@ -1,0 +1,80 @@
+﻿@model IEnumerable<TF_Base.Models.Boleto>
+
+@{
+    ViewBag.Title = "IndexEmpleado";
+    Layout = "../LayoutEmpleado.cshtml";
+}
+
+<h2 class="text-center">Lista de boletos</h2>
+<br />
+<form action="#" method="post">
+   @Html.DropDownList("filtroIDVuelo", "Seleccione un Vuelo")
+   <input style="margin-left:30px" class="btn btn-primary" type="submit" name="btnFiltro" value="Buscar" />
+</form>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>
+            ID Boleto
+        </th>
+        <th>
+            ID Vuelo
+        </th>
+        <th>
+            Aerolínea
+        </th>
+        <th>
+            Datos
+        </th>
+        <th>
+            Fecha Salida
+        </th>
+        <th>
+            DNI
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idBoleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idVuelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vuelo.AerolineaID) - 
+            @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Aerolineas.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Info)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vuelo.fecha.Day)/
+            @Html.DisplayFor(modelItem => item.Vuelo.fecha.Month)/
+            @Html.DisplayFor(modelItem => item.Vuelo.fecha.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.dni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado.nombre)
+        </td>
+        <td>
+            @if (item.idEstado == 1) //SI ESTA RESERVADO
+            {
+                @Html.ActionLink("Confirmar", "Confirmar", new { id = item.idBoleto }, new {@class = "btn btn-success" })
+                <label style="margin-left:20px">
+                @Html.ActionLink("Cancelar", "Cancelar", new { id = item.idBoleto }, new {@class = "btn btn-danger" })
+                </label>
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>

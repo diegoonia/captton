@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TF_Base.Models.Vuelo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../LayoutEmpleado.cshtml";
+}
+
+<h2 class="text-center">Lista de vuelos</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            ID Vuelo
+        </th>
+        <th>
+            Aerolinea
+        </th>
+        <th>
+            Ciudad/País Origen
+        </th>
+        <th>
+            Horario salida
+        </th>
+        <th>
+            Ciudadad/País Destino
+        </th>
+        <th>
+            Horario llegada
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Asientos (Total/Ocupados)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.idVuelo)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.AerolineaID) - 
+            @Html.DisplayFor(modelItem => item.Conexiones.Aerolineas.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conexiones.CiudadOrigen) / 
+            @Html.DisplayFor(modelItem => item.Conexiones.PaisOrigen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conexiones.HorarioSalida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conexiones.CiudadDestino) / 
+            @Html.DisplayFor(modelItem => item.Conexiones.PaisDestino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conexiones.HorarioLlegada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha.Day)/
+            @Html.DisplayFor(modelItem => item.fecha.Month)/
+            @Html.DisplayFor(modelItem => item.fecha.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantAsientos) / @Html.DisplayFor(modelItem => item.cantOcupados)
+        </td>
+        <td>
+            @if (item.cantAsientos >= item.cantOcupados) //Si esta lleno no me aparece el boton reservar
+            {
+                    if ( Session["aeroEmpleado"].ToString() == "Agencia" )
+                {
+                    @Html.ActionLink("Reservar", "../Boleto/Reservar", new { id=item.idVuelo }, new {@class = "btn btn-success" })
+                }
+                else
+                if ( Session["aeroEmpleado"].ToString() == item.AerolineaID ) 
+                {
+                    @Html.ActionLink("Reservar", "../Boleto/Reservar", new { id=item.idVuelo }, new {@class = "btn btn-success" })
+                }
+            }
+        </td>
+    </tr>
+}
+</table>
+
+<br /><br />
+<h2>Filtrar</h2>
+
+<form action="#" method="post">
+    <div>
+        @Html.DropDownList("filtroAero", "Seleccione una aerolínea")
+    </div>
+    <br />
+    <input class="btn btn-primary" type="submit" name="btnFiltro" value="Buscar" />
+</form>

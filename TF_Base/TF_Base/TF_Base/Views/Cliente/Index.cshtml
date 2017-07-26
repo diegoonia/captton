@@ -1,0 +1,27 @@
+﻿@model IEnumerable<TF_Base.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../LayoutEmpleado.cshtml";
+}
+
+<h2 class="text-center">Lista de clientes</h2>
+<p>
+    @Html.ActionLink("Alta cliente", "Alta", null, new {@class = "btn btn-success" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            DNI
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dni)
+        </td>
+    </tr>
+}
+
+</table>

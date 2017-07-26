@@ -1,0 +1,74 @@
+﻿@model TF_Base.Models.Vuelo
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "../Layout.cshtml";
+}
+
+<div class="text-center">
+<h2>Eliminar vuelo</h2>
+
+    <div class="display-label">
+         <strong>ID vuelo</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.idVuelo)
+    </div>
+
+    <br />
+    <div class="display-label">
+         <strong>ID Aerolínea</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.AerolineaID)
+    </div>
+
+    <br />
+    <div class="display-label">
+         <strong>Salida</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Conexiones.CiudadOrigen) / 
+        @Html.DisplayFor(model => model.Conexiones.PaisOrigen) / 
+        @Html.DisplayFor(model => model.Conexiones.HorarioSalida)
+    </div>
+
+    <br />
+    <div class="display-field">
+        <strong>Llegada</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Conexiones.CiudadDestino) / 
+        @Html.DisplayFor(model => model.Conexiones.PaisDestino) / 
+        @Html.DisplayFor(model => model.Conexiones.HorarioLlegada)
+    </div>
+
+    <br />
+    <div class="display-field">
+        <strong>Fecha salida</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.fecha.Day)/
+        @Html.DisplayFor(model => model.fecha.Month)/
+        @Html.DisplayFor(model => model.fecha.Year)
+    </div>
+
+    <br />
+    <div>
+        <strong>Asientos Total/Ocupados</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.cantAsientos) / 
+        @Html.DisplayFor(model => model.cantOcupados)
+    </div>
+
+<br /><br />
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input class = "btn btn-danger" type="submit" value="Eliminar" />
+        <br /><br />
+        @Html.ActionLink("Volver al listado", "IndexEncargado", null, new {@class = "btn btn-primary" })   
+    </p>
+}
+</div>

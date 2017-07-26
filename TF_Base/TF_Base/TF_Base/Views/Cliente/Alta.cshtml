@@ -1,0 +1,36 @@
+﻿@model TF_Base.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "../LayoutEmpleado.cshtml";
+}
+
+<div class="text-center">
+<h2>Alta Cliente</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+        <div class="editor-label">
+            <strong>Ingrese el DNI</strong>
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dni)
+            @Html.ValidationMessageFor(model => model.dni)
+        </div>
+
+        <br />
+        <p>
+            <input class = "btn btn-success" type="submit" value="Dar alta" />
+        </p>
+}
+<br />
+<div>
+    @Html.ActionLink("Ver lista de clientes", "Index", null, new {@class = "btn btn-primary" })
+</div>
+
+</div>

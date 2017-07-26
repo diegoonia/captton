@@ -1,0 +1,44 @@
+﻿@model TF_Base.Models.Boleto
+
+@{
+    ViewBag.Title = "Cancelar";
+    Layout = "../Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Confirmar</h2>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="display-label">
+         <strong>ID Boleto</strong>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.idBoleto)
+        </div>
+
+        <div class="display-label">
+             <strong>ID Aerolínea</strong>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Vuelo.AerolineaID)
+        </div>
+
+        <div class="display-label">
+             <strong>DNI Cliente</strong>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Cliente.dni)
+        </div>
+        <br /><br />
+        <p>
+            <input class="btn btn-danger" type="submit" value="Cancelar" />
+        </p>
+    }
+    <br /><br />
+    <div>
+        @Html.ActionLink("Volver a la lista", "IndexEmpleado", null, new {@class = "btn btn-primary" })
+    </div>
+</div>

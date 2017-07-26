@@ -1,0 +1,46 @@
+﻿@model TF_Base.Models.Vuelo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "../Layout.cshtml";
+}
+<div class="text-center">
+<h2>Alta vuelo</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        <div class="editor-label">
+            <strong>Conexión</strong>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ConexionID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ConexionID)
+        </div>
+
+        <div>
+            <strong>Fecha</strong>
+        </div>
+        
+        <div>
+            <input type="date" name="fecha" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+        <div>
+            <strong>Cantidad de asientos</strong>
+        </div>
+        
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cantAsientos)
+            @Html.ValidationMessageFor(model => model.cantAsientos)
+        </div>
+
+        <p>
+            <input class = "btn btn-success" type="submit" value="Crear vuelo" />
+        </p>
+}
+
+<div>
+    @Html.ActionLink("Volver a lista de vuelos", "IndexEncargado", null, new {@class = "btn btn-primary" })
+</div>
+</div>

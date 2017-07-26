@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TF_Base.Models.Boleto>
+
+@{
+    ViewBag.Title = "IndexEmpleado";
+    Layout = "../LayoutCliente.cshtml";
+}
+
+<h2 class="text-center">Lista de boletos</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            ID Boleto
+        </th>
+        <th>
+            ID Vuelo
+        </th>
+        <th>
+            Aerolínea
+        </th>
+        <th>
+            Información de vuelo
+        </th>
+        <th>
+            Fecha Salida
+        </th>
+        <th>
+            Estado
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idBoleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idVuelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vuelo.AerolineaID) - 
+            @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Aerolineas.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Info)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vuelo.fecha.Day)/
+            @Html.DisplayFor(modelItem => item.Vuelo.fecha.Month)/
+            @Html.DisplayFor(modelItem => item.Vuelo.fecha.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado.nombre)
+        </td>
+    </tr>
+}
+
+</table>

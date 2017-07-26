@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaVuelosModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SistemaVuelosModelStoreContainer">
+          <EntitySet Name="Aerolineas" EntityType="SistemaVuelosModel.Store.Aerolineas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Boleto" EntityType="SistemaVuelosModel.Store.Boleto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cliente" EntityType="SistemaVuelosModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Conexiones" EntityType="SistemaVuelosModel.Store.Conexiones" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Empleado" EntityType="SistemaVuelosModel.Store.Empleado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Encargado" EntityType="SistemaVuelosModel.Store.Encargado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estado" EntityType="SistemaVuelosModel.Store.Estado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="SistemaVuelosModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vuelo" EntityType="SistemaVuelosModel.Store.Vuelo" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Conexione__Aerol__1273C1CD" Association="SistemaVuelosModel.Store.FK__Conexione__Aerol__1273C1CD">
+            <End Role="Aerolineas" EntitySet="Aerolineas" />
+            <End Role="Conexiones" EntitySet="Conexiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Cliente" Association="SistemaVuelosModel.Store.FK_Boleto_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Estado" Association="SistemaVuelosModel.Store.FK_Boleto_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Vuelo" Association="SistemaVuelosModel.Store.FK_Boleto_Vuelo">
+            <End Role="Vuelo" EntitySet="Vuelo" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Usuario" Association="SistemaVuelosModel.Store.FK_Cliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Aerolineas" Association="SistemaVuelosModel.Store.FK_Empleado_Aerolineas">
+            <End Role="Aerolineas" EntitySet="Aerolineas" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Usuario" Association="SistemaVuelosModel.Store.FK_Empleado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Usuario1" Association="SistemaVuelosModel.Store.FK_Empleado_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encargado_Aerolineas" Association="SistemaVuelosModel.Store.FK_Encargado_Aerolineas">
+            <End Role="Aerolineas" EntitySet="Aerolineas" />
+            <End Role="Encargado" EntitySet="Encargado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encargado_Usuario" Association="SistemaVuelosModel.Store.FK_Encargado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Encargado" EntitySet="Encargado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vuelo_Conexiones" Association="SistemaVuelosModel.Store.FK_Vuelo_Conexiones">
+            <End Role="Conexiones" EntitySet="Conexiones" />
+            <End Role="Vuelo" EntitySet="Vuelo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Aerolineas">
+          <Key>
+            <PropertyRef Name="AerolineaID" />
+          </Key>
+          <Property Name="AerolineaID" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="URL" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Boleto">
+          <Key>
+            <PropertyRef Name="idBoleto" />
+          </Key>
+          <Property Name="idBoleto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idVuelo" Type="int" Nullable="false" />
+          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="dni" />
+          </Key>
+          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Conexiones">
+          <Key>
+            <PropertyRef Name="AerolineaID" />
+            <PropertyRef Name="ConexionID" />
+          </Key>
+          <Property Name="AerolineaID" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="ConexionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CiudadOrigen" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="PaisOrigen" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="CiudadDestino" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="PaisDestino" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="HorarioSalida" Type="time" Nullable="false" />
+          <Property Name="HorarioLlegada" Type="time" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AerolineaID" Type="varchar" MaxLength="2" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Encargado">
+          <Key>
+            <PropertyRef Name="idEncargado" />
+          </Key>
+          <Property Name="idEncargado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AerolineaID" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="nombreCompleto" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vuelo">
+          <Key>
+            <PropertyRef Name="idVuelo" />
+          </Key>
+          <Property Name="AerolineaID" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="ConexionID" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="idVuelo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cantAsientos" Type="int" Nullable="false" />
+          <Property Name="cantOcupados" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Conexione__Aerol__1273C1CD">
+          <End Role="Aerolineas" Type="SistemaVuelosModel.Store.Aerolineas" Multiplicity="1" />
+          <End Role="Conexiones" Type="SistemaVuelosModel.Store.Conexiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aerolineas">
+              <PropertyRef Name="AerolineaID" />
+            </Principal>
+            <Dependent Role="Conexiones">
+              <PropertyRef Name="AerolineaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Cliente">
+          <End Role="Cliente" Type="SistemaVuelosModel.Store.Cliente" Multiplicity="1" />
+          <End Role="Boleto" Type="SistemaVuelosModel.Store.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="dni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Estado">
+          <End Role="Estado" Type="SistemaVuelosModel.Store.Estado" Multiplicity="1" />
+          <End Role="Boleto" Type="SistemaVuelosModel.Store.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Vuelo">
+          <End Role="Vuelo" Type="SistemaVuelosModel.Store.Vuelo" Multiplicity="1" />
+          <End Role="Boleto" Type="SistemaVuelosModel.Store.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelo">
+              <PropertyRef Name="idVuelo" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idVuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Usuario">
+          <End Role="Usuario" Type="SistemaVuelosModel.Store.Usuario" Multiplicity="0..1" />
+          <End Role="Cliente" Type="SistemaVuelosModel.Store.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Aerolineas">
+          <End Role="Aerolineas" Type="SistemaVuelosModel.Store.Aerolineas" Multiplicity="0..1" />
+          <End Role="Empleado" Type="SistemaVuelosModel.Store.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aerolineas">
+              <PropertyRef Name="AerolineaID" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="AerolineaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Usuario">
+          <End Role="Usuario" Type="SistemaVuelosModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Empleado" Type="SistemaVuelosModel.Store.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Usuario1">
+          <End Role="Usuario" Type="SistemaVuelosModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Empleado" Type="SistemaVuelosModel.Store.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encargado_Aerolineas">
+          <End Role="Aerolineas" Type="SistemaVuelosModel.Store.Aerolineas" Multiplicity="1" />
+          <End Role="Encargado" Type="SistemaVuelosModel.Store.Encargado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aerolineas">
+              <PropertyRef Name="AerolineaID" />
+            </Principal>
+            <Dependent Role="Encargado">
+              <PropertyRef Name="AerolineaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encargado_Usuario">
+          <End Role="Usuario" Type="SistemaVuelosModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Encargado" Type="SistemaVuelosModel.Store.Encargado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Encargado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vuelo_Conexiones">
+          <End Role="Conexiones" Type="SistemaVuelosModel.Store.Conexiones" Multiplicity="1" />
+          <End Role="Vuelo" Type="SistemaVuelosModel.Store.Vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conexiones">
+              <PropertyRef Name="AerolineaID" />
+              <PropertyRef Name="ConexionID" />
+            </Principal>
+            <Dependent Role="Vuelo">
+              <PropertyRef Name="AerolineaID" />
+              <PropertyRef Name="ConexionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaVuelosModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SistemaVuelosEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Aerolineas" EntityType="SistemaVuelosModel.Aerolineas" />
+          <EntitySet Name="Boleto" EntityType="SistemaVuelosModel.Boleto" />
+          <EntitySet Name="Cliente" EntityType="SistemaVuelosModel.Cliente" />
+          <EntitySet Name="Conexiones" EntityType="SistemaVuelosModel.Conexiones" />
+          <EntitySet Name="Empleado" EntityType="SistemaVuelosModel.Empleado" />
+          <EntitySet Name="Encargado" EntityType="SistemaVuelosModel.Encargado" />
+          <EntitySet Name="Estado" EntityType="SistemaVuelosModel.Estado" />
+          <EntitySet Name="Usuario" EntityType="SistemaVuelosModel.Usuario" />
+          <EntitySet Name="Vuelo" EntityType="SistemaVuelosModel.Vuelo" />
+          <AssociationSet Name="FK__Conexione__Aerol__1273C1CD" Association="SistemaVuelosModel.FK__Conexione__Aerol__1273C1CD">
+            <End Role="Aerolineas" EntitySet="Aerolineas" />
+            <End Role="Conexiones" EntitySet="Conexiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Aerolineas" Association="SistemaVuelosModel.FK_Empleado_Aerolineas">
+            <End Role="Aerolineas" EntitySet="Aerolineas" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encargado_Aerolineas" Association="SistemaVuelosModel.FK_Encargado_Aerolineas">
+            <End Role="Aerolineas" EntitySet="Aerolineas" />
+            <End Role="Encargado" EntitySet="Encargado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Cliente" Association="SistemaVuelosModel.FK_Boleto_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Estado" Association="SistemaVuelosModel.FK_Boleto_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Vuelo" Association="SistemaVuelosModel.FK_Boleto_Vuelo">
+            <End Role="Vuelo" EntitySet="Vuelo" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Usuario" Association="SistemaVuelosModel.FK_Cliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vuelo_Conexiones" Association="SistemaVuelosModel.FK_Vuelo_Conexiones">
+            <End Role="Conexiones" EntitySet="Conexiones" />
+            <End Role="Vuelo" EntitySet="Vuelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Usuario" Association="SistemaVuelosModel.FK_Empleado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Usuario1" Association="SistemaVuelosModel.FK_Empleado_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encargado_Usuario" Association="SistemaVuelosModel.FK_Encargado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Encargado" EntitySet="Encargado" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Aerolineas">
+          <Key>
+            <PropertyRef Name="AerolineaID" />
+          </Key>
+          <Property Name="AerolineaID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="URL" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Conexiones" Relationship="SistemaVuelosModel.FK__Conexione__Aerol__1273C1CD" FromRole="Aerolineas" ToRole="Conexiones" />
+          <NavigationProperty Name="Empleado" Relationship="SistemaVuelosModel.FK_Empleado_Aerolineas" FromRole="Aerolineas" ToRole="Empleado" />
+          <NavigationProperty Name="Encargado" Relationship="SistemaVuelosModel.FK_Encargado_Aerolineas" FromRole="Aerolineas" ToRole="Encargado" />
+        </EntityType>
+        <EntityType Name="Boleto">
+          <Key>
+            <PropertyRef Name="idBoleto" />
+          </Key>
+          <Property Name="idBoleto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idVuelo" Type="Int32" Nullable="false" />
+          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="SistemaVuelosModel.FK_Boleto_Cliente" FromRole="Boleto" ToRole="Cliente" />
+          <NavigationProperty Name="Estado" Relationship="SistemaVuelosModel.FK_Boleto_Estado" FromRole="Boleto" ToRole="Estado" />
+          <NavigationProperty Name="Vuelo" Relationship="SistemaVuelosModel.FK_Boleto_Vuelo" FromRole="Boleto" ToRole="Vuelo" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="dni" />
+          </Key>
+          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="Boleto" Relationship="SistemaVuelosModel.FK_Boleto_Cliente" FromRole="Cliente" ToRole="Boleto" />
+          <NavigationProperty Name="Usuario" Relationship="SistemaVuelosModel.FK_Cliente_Usuario" FromRole="Cliente" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Conexiones">
+          <Key>
+            <PropertyRef Name="AerolineaID" />
+            <PropertyRef Name="ConexionID" />
+          </Key>
+          <Property Name="AerolineaID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="ConexionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CiudadOrigen" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="PaisOrigen" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="CiudadDestino" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="PaisDestino" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="HorarioSalida" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="HorarioLlegada" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Aerolineas" Relationship="SistemaVuelosModel.FK__Conexione__Aerol__1273C1CD" FromRole="Conexiones" ToRole="Aerolineas" />
+          <NavigationProperty Name="Vuelo" Relationship="SistemaVuelosModel.FK_Vuelo_Conexiones" FromRole="Conexiones" ToRole="Vuelo" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AerolineaID" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aerolineas" Relationship="SistemaVuelosModel.FK_Empleado_Aerolineas" FromRole="Empleado" ToRole="Aerolineas" />
+          <NavigationProperty Name="Usuario" Relationship="SistemaVuelosModel.FK_Empleado_Usuario" FromRole="Empleado" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="SistemaVuelosModel.FK_Empleado_Usuario1" FromRole="Empleado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Encargado">
+          <Key>
+            <PropertyRef Name="idEncargado" />
+          </Key>
+          <Property Name="idEncargado" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AerolineaID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aerolineas" Relationship="SistemaVuelosModel.FK_Encargado_Aerolineas" FromRole="Encargado" ToRole="Aerolineas" />
+          <NavigationProperty Name="Usuario" Relationship="SistemaVuelosModel.FK_Encargado_Usuario" FromRole="Encargado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Boleto" Relationship="SistemaVuelosModel.FK_Boleto_Estado" FromRole="Estado" ToRole="Boleto" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Cliente" Relationship="SistemaVuelosModel.FK_Cliente_Usuario" FromRole="Usuario" ToRole="Cliente" />
+          <NavigationProperty Name="Empleado" Relationship="SistemaVuelosModel.FK_Empleado_Usuario" FromRole="Usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado1" Relationship="SistemaVuelosModel.FK_Empleado_Usuario1" FromRole="Usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Encargado" Relationship="SistemaVuelosModel.FK_Encargado_Usuario" FromRole="Usuario" ToRole="Encargado" />
+        </EntityType>
+        <EntityType Name="Vuelo">
+          <Key>
+            <PropertyRef Name="idVuelo" />
+          </Key>
+          <Property Name="AerolineaID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="ConexionID" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idVuelo" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="cantAsientos" Type="Int32" Nullable="false" />
+          <Property Name="cantOcupados" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Boleto" Relationship="SistemaVuelosModel.FK_Boleto_Vuelo" FromRole="Vuelo" ToRole="Boleto" />
+          <NavigationProperty Name="Conexiones" Relationship="SistemaVuelosModel.FK_Vuelo_Conexiones" FromRole="Vuelo" ToRole="Conexiones" />
+        </EntityType>
+        <Association Name="FK__Conexione__Aerol__1273C1CD">
+          <End Role="Aerolineas" Type="SistemaVuelosModel.Aerolineas" Multiplicity="1" />
+          <End Role="Conexiones" Type="SistemaVuelosModel.Conexiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aerolineas">
+              <PropertyRef Name="AerolineaID" />
+            </Principal>
+            <Dependent Role="Conexiones">
+              <PropertyRef Name="AerolineaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Aerolineas">
+          <End Role="Aerolineas" Type="SistemaVuelosModel.Aerolineas" Multiplicity="0..1" />
+          <End Role="Empleado" Type="SistemaVuelosModel.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aerolineas">
+              <PropertyRef Name="AerolineaID" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="AerolineaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encargado_Aerolineas">
+          <End Role="Aerolineas" Type="SistemaVuelosModel.Aerolineas" Multiplicity="1" />
+          <End Role="Encargado" Type="SistemaVuelosModel.Encargado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aerolineas">
+              <PropertyRef Name="AerolineaID" />
+            </Principal>
+            <Dependent Role="Encargado">
+              <PropertyRef Name="AerolineaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Cliente">
+          <End Role="Cliente" Type="SistemaVuelosModel.Cliente" Multiplicity="1" />
+          <End Role="Boleto" Type="SistemaVuelosModel.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="dni" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="dni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Estado">
+          <End Role="Estado" Type="SistemaVuelosModel.Estado" Multiplicity="1" />
+          <End Role="Boleto" Type="SistemaVuelosModel.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Vuelo">
+          <End Role="Vuelo" Type="SistemaVuelosModel.Vuelo" Multiplicity="1" />
+          <End Role="Boleto" Type="SistemaVuelosModel.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelo">
+              <PropertyRef Name="idVuelo" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idVuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Usuario">
+          <End Role="Usuario" Type="SistemaVuelosModel.Usuario" Multiplicity="0..1" />
+          <End Role="Cliente" Type="SistemaVuelosModel.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vuelo_Conexiones">
+          <End Role="Conexiones" Type="SistemaVuelosModel.Conexiones" Multiplicity="1" />
+          <End Role="Vuelo" Type="SistemaVuelosModel.Vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conexiones">
+              <PropertyRef Name="AerolineaID" />
+              <PropertyRef Name="ConexionID" />
+            </Principal>
+            <Dependent Role="Vuelo">
+              <PropertyRef Name="AerolineaID" />
+              <PropertyRef Name="ConexionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Usuario">
+          <End Role="Usuario" Type="SistemaVuelosModel.Usuario" Multiplicity="1" />
+          <End Role="Empleado" Type="SistemaVuelosModel.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Usuario1">
+          <End Role="Usuario" Type="SistemaVuelosModel.Usuario" Multiplicity="1" />
+          <End Role="Empleado" Type="SistemaVuelosModel.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encargado_Usuario">
+          <End Role="Usuario" Type="SistemaVuelosModel.Usuario" Multiplicity="1" />
+          <End Role="Encargado" Type="SistemaVuelosModel.Encargado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Encargado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaVuelosModelStoreContainer" CdmEntityContainer="SistemaVuelosEntities">
+          <EntitySetMapping Name="Aerolineas">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Aerolineas">
+              <MappingFragment StoreEntitySet="Aerolineas">
+                <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boleto">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Boleto">
+              <MappingFragment StoreEntitySet="Boleto">
+                <ScalarProperty Name="idBoleto" ColumnName="idBoleto" />
+                <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conexiones">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Conexiones">
+              <MappingFragment StoreEntitySet="Conexiones">
+                <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+                <ScalarProperty Name="ConexionID" ColumnName="ConexionID" />
+                <ScalarProperty Name="CiudadOrigen" ColumnName="CiudadOrigen" />
+                <ScalarProperty Name="PaisOrigen" ColumnName="PaisOrigen" />
+                <ScalarProperty Name="CiudadDestino" ColumnName="CiudadDestino" />
+                <ScalarProperty Name="PaisDestino" ColumnName="PaisDestino" />
+                <ScalarProperty Name="HorarioSalida" ColumnName="HorarioSalida" />
+                <ScalarProperty Name="HorarioLlegada" ColumnName="HorarioLlegada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encargado">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Encargado">
+              <MappingFragment StoreEntitySet="Encargado">
+                <ScalarProperty Name="idEncargado" ColumnName="idEncargado" />
+                <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vuelo">
+            <EntityTypeMapping TypeName="SistemaVuelosModel.Vuelo">
+              <MappingFragment StoreEntitySet="Vuelo">
+                <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+                <ScalarProperty Name="ConexionID" ColumnName="ConexionID" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+                <ScalarProperty Name="cantAsientos" ColumnName="cantAsientos" />
+                <ScalarProperty Name="cantOcupados" ColumnName="cantOcupados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

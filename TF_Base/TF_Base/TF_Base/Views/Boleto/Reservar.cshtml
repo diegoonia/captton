@@ -1,0 +1,83 @@
+﻿@model TF_Base.Models.Vuelo
+
+@{
+    ViewBag.Title = "Reservar";
+    Layout = "../Layout.cshtml";
+}
+
+<div class="text-center">
+<h2>Reservar vuelo</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <div class="display-label">
+         <strong>ID vuelo</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.idVuelo)
+        @Html.HiddenFor(model => model.idVuelo)
+    </div>
+
+    <br />
+    <div class="display-label">
+         <strong>Nombre Aerolínea</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Conexiones.Aerolineas.Nombre)
+    </div>
+
+    <br />
+    <div class="display-label">
+         <strong>Salida</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Conexiones.CiudadOrigen) / 
+        @Html.DisplayFor(model => model.Conexiones.PaisOrigen) / 
+        @Html.DisplayFor(model => model.Conexiones.HorarioSalida)
+    </div>
+
+    <br />
+    <div class="display-field">
+        <strong>Llegada</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Conexiones.CiudadDestino) / 
+        @Html.DisplayFor(model => model.Conexiones.PaisDestino) / 
+        @Html.DisplayFor(model => model.Conexiones.HorarioLlegada)
+    </div>
+
+    <br />
+    <div class="display-field">
+        <strong>Fecha salida</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.fecha.Day)/
+        @Html.DisplayFor(model => model.fecha.Month)/
+        @Html.DisplayFor(model => model.fecha.Year)
+    </div>
+
+    <br />
+    <div>
+        <strong>Asientos Total/Ocupados</strong>
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.cantAsientos) / 
+        @Html.DisplayFor(model => model.cantOcupados)
+    </div>
+
+    <br />
+    <div>
+        DNI del cliente al cual se reserva el vuelo
+    </div>
+    <div>
+        @Html.DropDownList("dni", "Seleccione el dni")
+    </div>
+
+<br /><br />
+
+    <p>
+        <input class = "btn btn-success" type="submit" value="Reservar" />
+        <br /><br />
+        @Html.ActionLink("Volver al listado", "../Vuelo/IndexEmpleado", null, new {@class = "btn btn-primary" })   
+    </p>
+}
+</div>

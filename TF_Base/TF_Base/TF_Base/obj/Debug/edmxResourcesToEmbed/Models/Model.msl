@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistemaVuelosModelStoreContainer" CdmEntityContainer="SistemaVuelosEntities">
+    <EntitySetMapping Name="Aerolineas">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Aerolineas">
+        <MappingFragment StoreEntitySet="Aerolineas">
+          <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Boleto">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Boleto">
+        <MappingFragment StoreEntitySet="Boleto">
+          <ScalarProperty Name="idBoleto" ColumnName="idBoleto" />
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conexiones">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Conexiones">
+        <MappingFragment StoreEntitySet="Conexiones">
+          <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+          <ScalarProperty Name="ConexionID" ColumnName="ConexionID" />
+          <ScalarProperty Name="CiudadOrigen" ColumnName="CiudadOrigen" />
+          <ScalarProperty Name="PaisOrigen" ColumnName="PaisOrigen" />
+          <ScalarProperty Name="CiudadDestino" ColumnName="CiudadDestino" />
+          <ScalarProperty Name="PaisDestino" ColumnName="PaisDestino" />
+          <ScalarProperty Name="HorarioSalida" ColumnName="HorarioSalida" />
+          <ScalarProperty Name="HorarioLlegada" ColumnName="HorarioLlegada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+          <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Encargado">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Encargado">
+        <MappingFragment StoreEntitySet="Encargado">
+          <ScalarProperty Name="idEncargado" ColumnName="idEncargado" />
+          <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Estado">
+        <MappingFragment StoreEntitySet="Estado">
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vuelo">
+      <EntityTypeMapping TypeName="SistemaVuelosModel.Vuelo">
+        <MappingFragment StoreEntitySet="Vuelo">
+          <ScalarProperty Name="AerolineaID" ColumnName="AerolineaID" />
+          <ScalarProperty Name="ConexionID" ColumnName="ConexionID" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="cantAsientos" ColumnName="cantAsientos" />
+          <ScalarProperty Name="cantOcupados" ColumnName="cantOcupados" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
