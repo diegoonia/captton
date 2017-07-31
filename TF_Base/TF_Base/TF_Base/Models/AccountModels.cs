@@ -12,13 +12,9 @@ namespace TF_Base.Models
         [Required]
         public string UserName { get; set; }
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "NombreCompleto")]
         [Required]
-        public string Nombre { get; set; }
-
-        [Display(Name = "Apellido")]
-        [Required]
-        public string Apellido { get; set; }
+        public string NombreCompleto { get; set; }
 
         [Display(Name = "Dni")]
         [Required]

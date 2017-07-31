@@ -25,14 +25,13 @@ namespace TF_Base.Models
         public string Nombre { get; set; }
         public string URL { get; set; }
 
-        public string Info
+        public string Informacion
         {
             get
             {
                 return AerolineaID + "\t-  " + Nombre;
             }
         }
-
         public virtual ICollection<Conexiones> Conexiones { get; set; }
         public virtual ICollection<Empleado> Empleado { get; set; }
         public virtual ICollection<Encargado> Encargado { get; set; }

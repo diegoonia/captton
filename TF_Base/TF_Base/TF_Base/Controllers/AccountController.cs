@@ -29,6 +29,14 @@ namespace mvcStore.Controllers
                 bool res = WebSecurity.Login(login.UserName, login.Password, login.RememberMe);
                 if (res)
                 {
+                    //Cuando ingresa un usuario, reviso todos los boletos con fecha anterior a hoy y que esté reservado, los cancelo.
+                    List<Boleto> listaBoletos = db.Boleto.Where(b => b.Vuelo.fecha < DateTime.Now && b.idEstado == 1).ToList();
+                    foreach (Boleto item in listaBoletos)
+                    {
+                        item.idEstado = 3;
+                    }
+                    db.SaveChanges();
+
                     int idUsuario = db.Usuario.SingleOrDefault(u => u.nombre == login.UserName).idUsuario;
                     Empleado emp = db.Empleado.FirstOrDefault(e => e.idUsuario == idUsuario);
                     //Solo si es empleado hace el log
@@ -43,27 +51,33 @@ namespace mvcStore.Controllers
                             file.Close();
                         }
                     }
-                    
 
-                    if ( Roles.IsUserInRole("Cliente") ) 
-                    {
-                        return RedirectToAction("HistorialCliente", "Boleto");
-                    }
-                    
-                    if ( Roles.IsUserInRole("Encargado") )
-                    {
-                        return RedirectToAction("IndexEncargado", "Vuelo");
-                    }
-
-                    if (Roles.IsUserInRole("Empleado"))
-                    {
-                        return RedirectToAction("IndexEmpleado", "Vuelo");
-                    }
+                    return RedirectToAction("Ingreso", "Account");
                 }
             }
 
             ModelState.AddModelError("", "Error al logearse");
             return View(login);
+        }
+
+        public ActionResult Ingreso()
+        {
+            if (Roles.IsUserInRole("Cliente"))
+            {
+                return RedirectToAction("HistorialCliente", "Boleto");
+            }
+
+            if (Roles.IsUserInRole("Encargado"))
+            {
+                return RedirectToAction("IndexEncargado", "Vuelo");
+            }
+
+            if (Roles.IsUserInRole("Empleado"))
+            {
+                return RedirectToAction("IndexEmpleado", "Vuelo");
+            }
+            ModelState.AddModelError("", "Error al logearse");
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -103,11 +117,12 @@ namespace mvcStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Registro registro)
         {
+
             if (ModelState.IsValid)
             {
                 try
-                {
-                    WebSecurity.CreateUserAndAccount(registro.UserName, registro.Password, new { email = registro.UserEmail, nombre = registro.Nombre, apellido = registro.Apellido, dni = registro.Dni });
+                {   
+                    WebSecurity.CreateUserAndAccount(registro.UserName, registro.Password, new { email = registro.UserEmail, nombreCompleto = registro.NombreCompleto, dni = registro.Dni });
                     WebSecurity.Login(registro.UserName, registro.Password);
                     Roles.AddUserToRole(registro.UserName,"Cliente");
 
@@ -126,7 +141,6 @@ namespace mvcStore.Controllers
                     }
                     db.SaveChanges();
                     
-
                     return RedirectToAction("Login", "Account");
                 }
                 catch (MembershipCreateUserException e)

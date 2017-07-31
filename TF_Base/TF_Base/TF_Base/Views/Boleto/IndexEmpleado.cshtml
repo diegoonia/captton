@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Aerolineas.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Info)
+            @Html.DisplayFor(modelItem => item.Vuelo.Conexiones.Informacion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Vuelo.fecha.Day)/
@@ -65,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.Estado.nombre)
         </td>
         <td>
-            @if (item.idEstado == 1) //SI ESTA RESERVADO
+            @if (item.idEstado == 1 && item.Vuelo.fecha >= DateTime.Now) //Si esta reservado y la fecha es posterior a hoy
             {
                 @Html.ActionLink("Confirmar", "Confirmar", new { id = item.idBoleto }, new {@class = "btn btn-success" })
                 <label style="margin-left:20px">

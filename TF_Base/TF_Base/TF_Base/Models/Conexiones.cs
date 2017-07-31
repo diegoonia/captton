@@ -28,7 +28,7 @@ namespace TF_Base.Models
         public System.TimeSpan HorarioSalida { get; set; }
         public System.TimeSpan HorarioLlegada { get; set; }
 
-        public string Info
+        public string Informacion
         {
             get
             {

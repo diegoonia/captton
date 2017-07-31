@@ -67,8 +67,8 @@
             @Html.DisplayFor(modelItem => item.cantAsientos) / @Html.DisplayFor(modelItem => item.cantOcupados)
         </td>
         <td>
-            @if (item.cantAsientos >= item.cantOcupados) //Si esta lleno no me aparece el boton reservar
-            {
+            @if (item.cantAsientos >= item.cantOcupados && item.fecha >= DateTime.Now) //Si esta lleno no me aparece el boton reservar
+            {                                                                         //Si la fecha es anterior a hoy tampoco
                     if ( Session["aeroEmpleado"].ToString() == "Agencia" )
                 {
                     @Html.ActionLink("Reservar", "../Boleto/Reservar", new { id=item.idVuelo }, new {@class = "btn btn-success" })

@@ -21,7 +21,7 @@ namespace TF_Base.Controllers
         public ActionResult IndexEncargado()
         {
             var vuelo = db.Vuelo.Include(v => v.Conexiones);
-            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Info");
+            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Informacion");
 
             int usuario = WebSecurity.CurrentUserId; //Guardo el id del usuario actual
             Session["aeroEncargado"] = db.Encargado.First(e => e.idUsuario == usuario).AerolineaID.ToString(); //Busco la aerolinea a la cual pertenece
@@ -34,7 +34,7 @@ namespace TF_Base.Controllers
         public ActionResult IndexEncargado(FormCollection fm)
         {
             var vuelo = db.Vuelo.Include(v => v.Conexiones);
-            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Info");
+            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Informacion");
             string aeroSeleccionada = fm["filtroAero"];
 
             int usuario = WebSecurity.CurrentUserId;
@@ -54,7 +54,7 @@ namespace TF_Base.Controllers
         public ActionResult IndexEmpleado()
         {
             var vuelo = db.Vuelo.Include(v => v.Conexiones);
-            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Info");
+            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Informacion");
 
             int usuario = WebSecurity.CurrentUserId;
 
@@ -79,7 +79,7 @@ namespace TF_Base.Controllers
         public ActionResult IndexEmpleado(FormCollection fm)
         {
             var vuelo = db.Vuelo.Include(v => v.Conexiones);
-            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Info");
+            ViewBag.filtroAero = new SelectList(db.Aerolineas, "AerolineaID", "Informacion");
 
             string aeroSeleccionada = fm["filtroAero"];
 
@@ -108,7 +108,7 @@ namespace TF_Base.Controllers
             int usuario = WebSecurity.CurrentUserId;
             List<Conexiones> listaConexiones= db.Conexiones.Where(c => c.AerolineaID == db.Encargado.FirstOrDefault(e => e.idUsuario == usuario).AerolineaID).ToList();
 
-            ViewBag.ConexionID = new SelectList(listaConexiones, "ConexionID", "Info");
+            ViewBag.ConexionID = new SelectList(listaConexiones, "ConexionID", "Informacion");
             return View();
         }
 
@@ -140,7 +140,7 @@ namespace TF_Base.Controllers
                 return RedirectToAction("IndexEncargado");
             }
 
-            ViewBag.ConexionID = new SelectList(listaConexiones, "ConexionID", "Info");
+            ViewBag.ConexionID = new SelectList(listaConexiones, "ConexionID", "Informacion");
             return View(vuelo);
         }
 

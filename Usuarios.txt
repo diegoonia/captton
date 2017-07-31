@@ -1,0 +1,17 @@
+Contraseña de todos es: 123456
+
+Usuario		Rol
+encargadoAA	encargado en AA
+encargadoAZ	encargado en AZ
+encargadoAB	encargado en AB
+encargadoSQ	encargado en SQ
+cliente1	cliente
+cliente2	cliente
+cliente3	cliente
+cliente4	cliente
+cliente5	cliente
+cliente6	cliente
+empleadoAgencia	empleado de agencia
+empleadoAA	empleado en AA
+EmpleadoLH	empleado en LH
+EmpleadoSQ	empleado en SQ

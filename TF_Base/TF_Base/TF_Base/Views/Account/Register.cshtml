@@ -21,19 +21,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(f => f.Nombre)
+            <label>Nombre completo</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(f => f.Nombre)
-            @Html.ValidationMessageFor(f => f.Nombre)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(f => f.Apellido)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(f => f.Apellido)
-            @Html.ValidationMessageFor(f => f.Apellido)
+            @Html.EditorFor(f => f.NombreCompleto)
+            @Html.ValidationMessageFor(f => f.NombreCompleto)
         </div>
 
         <div class="editor-label">
